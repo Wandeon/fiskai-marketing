@@ -1,0 +1,92 @@
+name: Deploy to SiteGround
+
+on:
+  # Trigger after scheduled rebuild completes successfully
+  workflow_run:
+    workflows: ["Scheduled Rebuild"]
+    types: [completed]
+
+  # Manual trigger
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    name: Deploy Static Site
+    runs-on: ubuntu-latest
+    # Only deploy if scheduled rebuild succeeded (or manual trigger)
+    if: ${{ github.event.workflow_run.conclusion == 'success' || github.event_name == 'workflow_dispatch' }}
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: "npm"
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build static export
+        run: npm run build
+        env:
+          NEXT_PUBLIC_APP_URL: https://fiskai.hr
+
+      - name: Verify output
+        run: |
+          if [ ! -d "out" ]; then
+            echo "ERROR: Output directory 'out' not found"
+            exit 1
+          fi
+
+          PAGE_COUNT=$(find out -name "index.html" | wc -l)
+          echo "Built $PAGE_COUNT pages"
+
+          if [ "$PAGE_COUNT" -lt 10 ]; then
+            echo "ERROR: Too few pages ($PAGE_COUNT)"
+            exit 1
+          fi
+
+      - name: Deploy to SiteGround via SFTP
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+        with:
+          server: ${{ secrets.SITEGROUND_HOST }}
+          username: ${{ secrets.SITEGROUND_USER }}
+          password: ${{ secrets.SITEGROUND_PASSWORD }}
+          protocol: sftp
+          port: 18765  # SiteGround uses non-standard SFTP port
+          local-dir: ./out/
+          server-dir: ./public_html/
+          dangerous-clean-slate: true  # Remove files not in source
+          log-level: minimal
+
+      - name: Verify deployment
+        run: |
+          echo "Waiting for deployment to propagate..."
+          sleep 10
+
+          echo "Checking homepage..."
+          HTTP_CODE=$(curl -sL -o /dev/null -w "%{http_code}" "https://www.fiskai.hr/" || echo "000")
+          echo "Homepage: HTTP $HTTP_CODE"
+
+          echo "Checking login redirect..."
+          HTTP_CODE=$(curl -sL -o /dev/null -w "%{http_code}" "https://www.fiskai.hr/login/" || echo "000")
+          echo "Login: HTTP $HTTP_CODE"
+
+          echo "Checking news page..."
+          HTTP_CODE=$(curl -sL -o /dev/null -w "%{http_code}" "https://www.fiskai.hr/vijesti/" || echo "000")
+          echo "News: HTTP $HTTP_CODE"
+
+      - name: Post deployment summary
+        run: |
+          echo "## Deployment Summary" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "- **Target:** www.fiskai.hr" >> $GITHUB_STEP_SUMMARY
+          echo "- **Pages deployed:** $(find out -name 'index.html' | wc -l)" >> $GITHUB_STEP_SUMMARY
+          echo "- **Timestamp:** $(date -u '+%Y-%m-%d %H:%M:%S UTC')" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "### Verify" >> $GITHUB_STEP_SUMMARY
+          echo "- [Homepage](https://www.fiskai.hr/)" >> $GITHUB_STEP_SUMMARY
+          echo "- [News](https://www.fiskai.hr/vijesti/)" >> $GITHUB_STEP_SUMMARY
+          echo "- [Login redirect](https://www.fiskai.hr/login/)" >> $GITHUB_STEP_SUMMARY
