@@ -66,7 +66,7 @@ jobs:
           password: ${{ secrets.SITEGROUND_SFTP_PASSWORD }}
           port: 21
           local-dir: ./out/
-          server-dir: ./public_html/
+          server-dir: ./fiskai.hr/public_html/
           dangerous-clean-slate: true
           log-level: minimal
 
