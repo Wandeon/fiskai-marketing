@@ -1,0 +1,84 @@
+name: Scheduled Rebuild
+
+on:
+  schedule:
+    # Run daily at 05:00 UTC
+    - cron: "0 5 * * *"
+  workflow_dispatch: # Allow manual trigger
+
+jobs:
+  rebuild:
+    name: Daily Rebuild
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: "npm"
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build static export
+        run: npm run build
+        env:
+          # Ensure build succeeds even if WordPress is down (uses fallback JSON)
+          NEXT_PUBLIC_APP_URL: https://fiskai.hr
+
+      - name: Verify output directory exists
+        run: |
+          if [ ! -d "out" ]; then
+            echo "ERROR: Output directory 'out' not found"
+            exit 1
+          fi
+          echo "Output directory exists"
+
+      - name: Verify critical pages
+        run: |
+          echo "Verifying critical pages..."
+          PAGES=(
+            "out/index.html"
+            "out/vijesti/index.html"
+            "out/contact/index.html"
+            "out/login/index.html"
+            "out/register/index.html"
+          )
+          for page in "${PAGES[@]}"; do
+            if [ -f "$page" ]; then
+              echo "  ✓ $page"
+            else
+              echo "  ✗ MISSING: $page"
+              exit 1
+            fi
+          done
+          echo "All critical pages verified!"
+
+      - name: Verify news pages from fallback JSON
+        run: |
+          echo "Verifying news pages from fallback..."
+          # Check that at least one vijesti/<slug> page exists
+          if ls out/vijesti/*/index.html 1> /dev/null 2>&1; then
+            echo "  ✓ News slug pages found"
+            ls out/vijesti/*/index.html | head -5
+          else
+            echo "  Note: No news slug pages found (may be expected with minimal fallback)"
+          fi
+
+      - name: Count generated pages
+        run: |
+          PAGE_COUNT=$(find out -name "index.html" | wc -l)
+          echo "Generated $PAGE_COUNT pages"
+          if [ "$PAGE_COUNT" -lt 10 ]; then
+            echo "ERROR: Expected at least 10 pages, found $PAGE_COUNT"
+            exit 1
+          fi
+
+      - name: Upload build artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: static-site-daily-${{ github.run_number }}
+          path: out/
+          retention-days: 3

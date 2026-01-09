@@ -1,0 +1,137 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  lint:
+    name: Lint
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: "npm"
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run ESLint
+        run: npm run lint
+
+      - name: TypeScript check
+        run: npx tsc --noEmit
+
+  forbidden-imports:
+    name: Forbidden Import Check
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Check for database imports
+        run: |
+          echo "Checking for forbidden database imports..."
+          if grep -r "@/lib/db" src/; then
+            echo "ERROR: Database imports found in marketing code"
+            exit 1
+          fi
+          if grep -r "prisma" src/ --include="*.ts" --include="*.tsx" | grep -v "node_modules"; then
+            echo "ERROR: Prisma imports found in marketing code"
+            exit 1
+          fi
+          echo "No database imports found"
+
+      - name: Check for auth imports
+        run: |
+          echo "Checking for forbidden auth imports..."
+          if grep -r "@/lib/auth" src/; then
+            echo "ERROR: Auth imports found in marketing code"
+            exit 1
+          fi
+          echo "No auth imports found"
+
+      - name: Check for server actions
+        run: |
+          echo "Checking for server actions..."
+          if grep -r '"use server"' src/; then
+            echo "ERROR: Server actions found in marketing code"
+            exit 1
+          fi
+          echo "No server actions found"
+
+      - name: Check for force-dynamic
+        run: |
+          echo "Checking for force-dynamic..."
+          if grep -r 'dynamic.*=.*"force-dynamic"' src/; then
+            echo "ERROR: force-dynamic found in marketing code"
+            exit 1
+          fi
+          echo "No force-dynamic found"
+
+  build:
+    name: Build Static Export
+    runs-on: ubuntu-latest
+    needs: [lint, forbidden-imports]
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: "npm"
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build static export
+        run: npm run build
+
+      - name: Verify output directory exists
+        run: |
+          if [ ! -d "out" ]; then
+            echo "ERROR: Output directory 'out' not found"
+            exit 1
+          fi
+          echo "Output directory exists"
+
+      - name: Verify critical pages
+        run: |
+          echo "Verifying critical pages..."
+          PAGES=(
+            "out/index.html"
+            "out/login/index.html"
+            "out/register/index.html"
+            "out/contact/index.html"
+          )
+          for page in "${PAGES[@]}"; do
+            if [ -f "$page" ]; then
+              echo "  ✓ $page"
+            else
+              echo "  ✗ MISSING: $page"
+              exit 1
+            fi
+          done
+          echo "All critical pages verified!"
+
+      - name: Count generated pages
+        run: |
+          PAGE_COUNT=$(find out -name "index.html" | wc -l)
+          echo "Generated $PAGE_COUNT pages"
+          if [ "$PAGE_COUNT" -lt 10 ]; then
+            echo "ERROR: Expected at least 10 pages, found $PAGE_COUNT"
+            exit 1
+          fi
+
+      - name: Upload build artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: static-site
+          path: out/
+          retention-days: 7
