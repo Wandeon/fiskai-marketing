@@ -1,4 +1,4 @@
-/* eslint-disable fisk-design-system/no-hardcoded-colors --
+/**
  * @design-override: Marketing header uses dark cockpit aesthetic with:
  * - Animated glow effects requiring framer-motion color interpolation
  * - Gradient CTA buttons for brand visibility

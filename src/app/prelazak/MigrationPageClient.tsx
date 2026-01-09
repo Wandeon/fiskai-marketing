@@ -152,9 +152,7 @@ export function MigrationPageClient() {
                   className="rounded-full border border-white/10 bg-surface/5 backdrop-blur-sm px-4 py-2 text-sm text-white/60"
                   whileHover={{
                     scale: 1.05,
-                    // eslint-disable-next-line fisk-design-system/no-hardcoded-colors -- @design-override: framer-motion color interpolation
                     borderColor: "rgba(244,63,94,0.5)",
-                    // eslint-disable-next-line fisk-design-system/no-hardcoded-colors -- @design-override: framer-motion color interpolation
                     backgroundColor: "rgba(244,63,94,0.1)",
                   }}
                 >

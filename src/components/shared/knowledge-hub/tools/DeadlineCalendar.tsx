@@ -141,7 +141,6 @@ export function DeadlineCalendar({ year }: DeadlineCalendarProps) {
           const data = await res.json()
 
           // Convert obligations to Deadline format
-          // eslint-disable-next-line @typescript-eslint/no-explicit-any
           const obligationDeadlines: Deadline[] = data.obligations.map((ob: any) => {
             const obligationType = ob.obligationType
             let type: "doprinosi" | "pdv" | "dohodak" | "porez" | "joppd" = "doprinosi"
