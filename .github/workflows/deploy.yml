@@ -1,4 +1,4 @@
-name: Deploy to SiteGround
+name: Deploy Marketing to SiteGround
 
 on:
   # Trigger after scheduled rebuild completes successfully
@@ -48,17 +48,26 @@ jobs:
             exit 1
           fi
 
-      - name: Deploy to SiteGround via SFTP
+          # Verify critical pages
+          for page in index.html vijesti/index.html login/index.html register/index.html; do
+            if [ -f "out/$page" ]; then
+              echo "  OK: out/$page"
+            else
+              echo "  MISSING: out/$page"
+              exit 1
+            fi
+          done
+
+      - name: Deploy to SiteGround via FTP
         uses: SamKirkland/FTP-Deploy-Action@v4.3.5
         with:
-          server: ${{ secrets.SITEGROUND_HOST }}
-          username: ${{ secrets.SITEGROUND_USER }}
-          password: ${{ secrets.SITEGROUND_PASSWORD }}
-          protocol: sftp
-          port: 18765  # SiteGround uses non-standard SFTP port
+          server: ${{ secrets.SITEGROUND_SFTP_HOST }}
+          username: ${{ secrets.SITEGROUND_SFTP_USER }}
+          password: ${{ secrets.SITEGROUND_SFTP_PASSWORD }}
+          port: 21
           local-dir: ./out/
           server-dir: ./public_html/
-          dangerous-clean-slate: true  # Remove files not in source
+          dangerous-clean-slate: true
           log-level: minimal
 
       - name: Verify deployment
