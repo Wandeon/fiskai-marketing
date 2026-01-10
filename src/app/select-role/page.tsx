@@ -1,4 +1,5 @@
 import type { Metadata } from "next"
+import Link from "next/link"
 
 const APP_URL = "https://app.fiskai.hr"
 
@@ -35,9 +36,9 @@ export default function SelectRoleRedirect() {
             >
               Kliknite ovdje ako se stranica ne učita automatski
             </a>
-            <a href="/" className="block text-xs text-inverse/60 hover:text-inverse">
+            <Link href="/" className="block text-xs text-inverse/60 hover:text-inverse">
               ← Povratak na početnu
-            </a>
+            </Link>
           </div>
         </div>
       </div>

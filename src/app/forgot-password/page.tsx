@@ -1,4 +1,5 @@
 import type { Metadata } from "next"
+import Link from "next/link"
 
 export const metadata: Metadata = {
   title: "Zaboravljena lozinka",
@@ -30,9 +31,9 @@ export default function ForgotPasswordRedirectPage() {
             >
               Kliknite ovdje ako niste automatski preusmjereni
             </a>
-            <a href="/" className="block text-xs text-inverse/60 hover:text-inverse">
+            <Link href="/" className="block text-xs text-inverse/60 hover:text-inverse">
               ← Povratak na početnu
-            </a>
+            </Link>
           </div>
         </div>
       </div>
