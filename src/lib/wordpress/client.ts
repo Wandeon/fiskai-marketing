@@ -133,3 +133,14 @@ export async function getRelatedPosts(
   if (!posts) return null
   return posts.filter((p) => p.slug !== excludeSlug).slice(0, limit)
 }
+
+export async function getAllPosts(): Promise<NewsPost[] | null> {
+  const posts = await wpFetch<WPPost[]>("/posts", {
+    status: "publish",
+    per_page: "100",
+    orderby: "date",
+    order: "desc",
+  })
+  if (!posts) return null
+  return Promise.all(posts.map(normalizePost))
+}

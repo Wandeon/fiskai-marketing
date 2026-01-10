@@ -15,10 +15,10 @@ import { GlassCard } from "@/components/shared/ui/patterns/GlassCard"
 import { HoverScale } from "@/components/shared/ui/motion/HoverScale"
 import { FadeIn } from "@/components/shared/ui/motion/FadeIn"
 
-const BASE_URL = process.env.NEXT_PUBLIC_APP_URL || "https://fiskai.hr"
+const BASE_URL = process.env.NEXT_PUBLIC_APP_URL || "https://www.fiskai.hr"
 
 export const metadata: Metadata = {
-  title: "Besplatni alati za poslovanje | FiskAI",
+  title: "Besplatni alati za poslovanje",
   description:
     "Besplatni kalkulatori i alati za hrvatske poduzetnike - doprinosi, porezi, uplatnice i više.",
   alternates: {

@@ -5,10 +5,10 @@ import { ComparisonsExplorer } from "./ComparisonsExplorer"
 import { SectionBackground } from "@/components/shared/ui/patterns/SectionBackground"
 import { FadeIn } from "@/components/shared/ui/motion/FadeIn"
 
-const BASE_URL = process.env.NEXT_PUBLIC_APP_URL || "https://fiskai.hr"
+const BASE_URL = process.env.NEXT_PUBLIC_APP_URL || "https://www.fiskai.hr"
 
 export const metadata: Metadata = {
-  title: "Usporedbe oblika poslovanja | FiskAI",
+  title: "Usporedbe oblika poslovanja",
   description:
     "Usporedite različite oblike poslovanja u Hrvatskoj: paušalni obrt, obrt dohodaš, d.o.o., freelance i više.",
   alternates: {

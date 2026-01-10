@@ -10,7 +10,7 @@ import { JsonLd } from "@/components/shared/seo/JsonLd"
 import { generateDefinedTermSchema, generateBreadcrumbSchema } from "@/lib/schema"
 import { SectionBackground } from "@/components/shared/ui/patterns/SectionBackground"
 
-const BASE_URL = process.env.NEXT_PUBLIC_APP_URL || "https://fiskai.hr"
+const BASE_URL = process.env.NEXT_PUBLIC_APP_URL || "https://www.fiskai.hr"
 
 interface Props {
   params: Promise<{ pojam: string }>
@@ -27,13 +27,13 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   if (!term) return {}
 
   return {
-    title: `${term.frontmatter.term} - Što je? | FiskAI Rječnik`,
+    title: `${term.frontmatter.term} - Što je? | Rječnik`,
     description: term.frontmatter.shortDefinition,
     alternates: {
       canonical: `${BASE_URL}/rjecnik/${pojam}`,
     },
     openGraph: {
-      title: `${term.frontmatter.term} - Što je? | FiskAI Rječnik`,
+      title: `${term.frontmatter.term} - Što je?`,
       description: term.frontmatter.shortDefinition,
       url: `${BASE_URL}/rjecnik/${pojam}`,
       siteName: "FiskAI",
@@ -50,7 +50,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     },
     twitter: {
       card: "summary_large_image",
-      title: `${term.frontmatter.term} - Što je? | FiskAI Rječnik`,
+      title: `${term.frontmatter.term} - Što je?`,
       description: term.frontmatter.shortDefinition,
       images: [`${BASE_URL}/opengraph-image`],
     },

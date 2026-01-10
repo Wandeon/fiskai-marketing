@@ -4,6 +4,7 @@ import {
   getAllCategories,
   getPostsByCategory,
   getPopularPosts,
+  getAllPosts,
 } from "@/lib/content/news"
 import { format } from "date-fns"
 import { hr } from "date-fns/locale"
@@ -19,20 +20,21 @@ import { FadeIn } from "@/components/shared/ui/motion/FadeIn"
 import { NewsSearch } from "@/components/shared/news/NewsSearch"
 import { NewsletterSignupStatic } from "@/components/shared/news/NewsletterSignupStatic"
 
-const BASE_URL = process.env.NEXT_PUBLIC_APP_URL || "https://fiskai.hr"
+const BASE_URL = process.env.NEXT_PUBLIC_APP_URL || "https://www.fiskai.hr"
 
 export const metadata: Metadata = {
-  title: "Porezne Vijesti | FiskAI",
+  title: "Porezne Vijesti",
   description: "Najnovije vijesti iz Porezne uprave, Narodnih novina i FINA-e.",
   alternates: { canonical: `${BASE_URL}/vijesti` },
 }
 
 // STATIC - No force-dynamic, updates via daily rebuild
 export default async function VijestiPage() {
-  const [featuredPosts, categories, popularPosts] = await Promise.all([
+  const [featuredPosts, categories, popularPosts, allPosts] = await Promise.all([
     getFeaturedPosts(4),
     getAllCategories(),
     getPopularPosts(5),
+    getAllPosts(),
   ])
 
   const categoriesWithPosts = await Promise.all(
@@ -122,7 +124,7 @@ export default async function VijestiPage() {
               </Link>
             ))}
             <div className="ml-auto flex-1 md:flex-initial md:min-w-[300px]">
-              <NewsSearch />
+              <NewsSearch posts={allPosts} />
             </div>
           </div>
         </GlassCard>

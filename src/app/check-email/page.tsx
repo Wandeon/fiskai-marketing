@@ -24,12 +24,21 @@ export default function CheckEmailRedirect() {
           __html: `window.location.replace("${redirectUrl}");`,
         }}
       />
-      <div className="min-h-screen flex items-center justify-center bg-surface-1">
-        <div className="text-center p-8">
-          <p className="text-secondary mb-4">Preusmjeravanje na aplikaciju...</p>
-          <a href={redirectUrl} className="text-link hover:underline">
-            Kliknite ovdje ako se stranica ne učita automatski
-          </a>
+      <div className="min-h-screen flex items-center justify-center bg-base text-inverse">
+        <div className="text-center space-y-4">
+          <div className="mx-auto h-8 w-8 animate-spin rounded-full border-4 border-accent border-t-transparent" />
+          <p className="text-lg">Preusmjeravanje na aplikaciju...</p>
+          <div className="space-y-2 pt-2">
+            <a
+              href={redirectUrl}
+              className="block text-sm text-link underline hover:text-accent-light"
+            >
+              Kliknite ovdje ako se stranica ne učita automatski
+            </a>
+            <a href="/" className="block text-xs text-inverse/60 hover:text-inverse">
+              ← Povratak na početnu
+            </a>
+          </div>
         </div>
       </div>
     </>

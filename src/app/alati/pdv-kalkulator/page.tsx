@@ -7,7 +7,7 @@ import { generateWebApplicationSchema } from "@/lib/schema/webApplication"
 import { SectionBackground } from "@/components/shared/ui/patterns/SectionBackground"
 import { THRESHOLDS, TAX_RATES, formatCurrency, formatPercentage } from "@/lib/fiscal-data"
 
-const BASE_URL = process.env.NEXT_PUBLIC_APP_URL || "https://fiskai.hr"
+const BASE_URL = process.env.NEXT_PUBLIC_APP_URL || "https://www.fiskai.hr"
 const pdvThresholdLabel = formatCurrency(THRESHOLDS.pdv.value, { decimals: 0 })
 const pdvThresholdYear = THRESHOLDS.pdv.effectiveFrom
   ? new Date(THRESHOLDS.pdv.effectiveFrom).getFullYear()
@@ -16,7 +16,7 @@ const vatStandardRate = formatPercentage(TAX_RATES.vat.standard.rate)
 const vatReducedRate = formatPercentage(TAX_RATES.vat.reduced[0]?.rate ?? 0.13)
 
 export const metadata: Metadata = {
-  title: "PDV Kalkulator - Kada prelazim prag? | FiskAI",
+  title: "PDV Kalkulator - Kada prelazim prag?",
   description: `Izračunajte koliko ste blizu PDV praga od ${pdvThresholdLabel} i što se mijenja kada ga prijeđete.`,
   alternates: {
     canonical: `${BASE_URL}/alati/pdv-kalkulator`,

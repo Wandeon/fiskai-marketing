@@ -1,14 +1,13 @@
 "use client"
 
-import { useState, useCallback, useEffect } from "react"
+import { useState, useCallback, useEffect, useMemo } from "react"
 import { useRouter, useSearchParams } from "next/navigation"
-import { Search, X, Loader2, ExternalLink } from "lucide-react"
+import { Search, X, Loader2 } from "lucide-react"
 import { GlassCard } from "@/components/shared/ui/patterns/GlassCard"
 import { Button } from "@/components/shared/ui/button"
 import { PostCard } from "./PostCard"
 import { useDebouncedCallback } from "use-debounce"
-import { format } from "date-fns"
-import { hr } from "date-fns/locale"
+import Fuse from "fuse.js"
 
 interface SearchResult {
   id: string
@@ -18,63 +17,80 @@ interface SearchResult {
   categoryName: string | null
   categorySlug: string | null
   publishedAt: string | null
-  featuredImageUrl: string | null
-  featuredImageSource: string | null
   impactLevel: string | null
 }
 
-interface SourceItem {
+interface NewsPost {
   id: string
-  sourceUrl: string
+  slug: string
   title: string
-  summaryHr: string | null
-  publishedAt: string | null
+  content: string
+  excerpt: string | null
+  publishedAt: string
+  categoryName: string | null
+  categorySlug: string | null
+  tags: string[]
   impactLevel: string | null
-  sourceName: string | null
+  tldr: string | null
 }
 
 interface NewsSearchProps {
   initialQuery?: string
+  posts?: NewsPost[]
 }
 
-export function NewsSearch({ initialQuery = "" }: NewsSearchProps) {
+export function NewsSearch({ initialQuery = "", posts = [] }: NewsSearchProps) {
   const router = useRouter()
   const searchParams = useSearchParams()
 
   const [isOpen, setIsOpen] = useState(!!initialQuery)
   const [query, setQuery] = useState(initialQuery)
   const [results, setResults] = useState<SearchResult[]>([])
-  const [items, setItems] = useState<SourceItem[]>([])
   const [isLoading, setIsLoading] = useState(false)
-  const [totalCount, setTotalCount] = useState(0)
 
-  const performSearch = useDebouncedCallback(async (searchQuery: string) => {
+  // Initialize Fuse.js search engine
+  const fuse = useMemo(() => {
+    return new Fuse(posts, {
+      keys: [
+        { name: "title", weight: 0.4 },
+        { name: "excerpt", weight: 0.2 },
+        { name: "content", weight: 0.2 },
+        { name: "tags", weight: 0.1 },
+        { name: "tldr", weight: 0.1 },
+      ],
+      threshold: 0.4,
+      includeScore: true,
+      minMatchCharLength: 2,
+    })
+  }, [posts])
+
+  const performSearch = useDebouncedCallback((searchQuery: string) => {
     if (searchQuery.length < 2) {
       setResults([])
-      setItems([])
-      setTotalCount(0)
       return
     }
 
     setIsLoading(true)
     try {
-      const params = new URLSearchParams({
-        q: searchQuery,
-        type: "individual",
-        limit: "10",
-        includeItems: "true",
-      })
-      const res = await fetch(`/api/news/posts?${params}`)
-      const data = await res.json()
-      setResults(data.posts || [])
-      setItems(data.items || [])
-      setTotalCount(data.totalCount || 0)
+      const searchResults = fuse.search(searchQuery, { limit: 10 })
+      const mappedResults: SearchResult[] = searchResults.map((result) => ({
+        id: result.item.id,
+        slug: result.item.slug,
+        title: result.item.title,
+        excerpt: result.item.excerpt,
+        categoryName: result.item.categoryName,
+        categorySlug: result.item.categorySlug,
+        publishedAt: result.item.publishedAt,
+        impactLevel: result.item.impactLevel,
+      }))
+      setResults(mappedResults)
     } catch (error) {
       console.error("Search error:", error)
+      setResults([])
     } finally {
       setIsLoading(false)
     }
-  }, 300)
+  }, 150)
 
   useEffect(() => {
     if (query) {
@@ -90,7 +106,6 @@ export function NewsSearch({ initialQuery = "" }: NewsSearchProps) {
     setIsOpen(false)
     setQuery("")
     setResults([])
-    setItems([])
     // Remove query param from URL
     const params = new URLSearchParams(searchParams.toString())
     params.delete("q")
@@ -148,9 +163,9 @@ export function NewsSearch({ initialQuery = "" }: NewsSearchProps) {
           <p className="mb-4 text-sm text-white/60">
             {isLoading ? (
               "Pretraživanje..."
-            ) : totalCount > 0 ? (
+            ) : results.length > 0 ? (
               <>
-                Pronađeno <strong className="text-white">{totalCount}</strong> rezultata za &quot;
+                Pronađeno <strong className="text-white">{results.length}</strong> rezultata za &quot;
                 {query}&quot;
               </>
             ) : (
@@ -161,7 +176,6 @@ export function NewsSearch({ initialQuery = "" }: NewsSearchProps) {
           {/* Published posts */}
           {results.length > 0 && (
             <div className="mb-8">
-              <h3 className="mb-4 text-sm font-semibold text-white/80">Objavljeni članci</h3>
               <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
                 {results.map((post) => (
                   <PostCard
@@ -172,51 +186,10 @@ export function NewsSearch({ initialQuery = "" }: NewsSearchProps) {
                     categoryName={post.categoryName || undefined}
                     categorySlug={post.categorySlug || undefined}
                     publishedAt={post.publishedAt ? new Date(post.publishedAt) : new Date()}
-                    featuredImageUrl={post.featuredImageUrl}
-                    featuredImageSource={post.featuredImageSource}
                     impactLevel={post.impactLevel}
                   />
                 ))}
               </div>
-            </div>
-          )}
-
-          {/* Source items */}
-          {items.length > 0 && (
-            <div>
-              <h3 className="mb-4 text-sm font-semibold text-white/80">Iz izvora</h3>
-              <GlassCard hover={false} padding="sm">
-                <ul className="divide-y divide-white/10">
-                  {items.map((item) => (
-                    <li key={item.id}>
-                      <a
-                        href={item.sourceUrl}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="group flex items-start gap-3 rounded-lg px-3 py-3 transition-colors hover:bg-surface/5"
-                      >
-                        <div className="flex-1">
-                          <p className="text-sm font-medium text-white line-clamp-2 group-hover:text-accent-light">
-                            {item.title}
-                          </p>
-                          {item.summaryHr && (
-                            <p className="mt-1 text-sm text-white/60 line-clamp-2">
-                              {item.summaryHr}
-                            </p>
-                          )}
-                          <p className="mt-1 text-xs text-white/50">
-                            {item.sourceName ?? "Izvor"}
-                            {item.publishedAt
-                              ? ` • ${format(new Date(item.publishedAt), "d. MMM yyyy", { locale: hr })}`
-                              : ""}
-                          </p>
-                        </div>
-                        <ExternalLink className="mt-1 h-4 w-4 flex-shrink-0 text-white/30 group-hover:text-accent" />
-                      </a>
-                    </li>
-                  ))}
-                </ul>
-              </GlassCard>
             </div>
           )}
         </div>

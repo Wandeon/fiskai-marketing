@@ -6,10 +6,10 @@ import { SectionBackground } from "@/components/shared/ui/patterns/SectionBackgr
 import { GlassCard } from "@/components/shared/ui/patterns/GlassCard"
 import { HoverScale } from "@/components/shared/ui/motion/HoverScale"
 
-const BASE_URL = process.env.NEXT_PUBLIC_APP_URL || "https://fiskai.hr"
+const BASE_URL = process.env.NEXT_PUBLIC_APP_URL || "https://www.fiskai.hr"
 
 export const metadata: Metadata = {
-  title: "Baza znanja | FiskAI",
+  title: "Baza znanja",
   description:
     "Vodiči, usporedbe i besplatni alati za hrvatske poduzetnike: paušalni obrt, obrt na dohodak, j.d.o.o., d.o.o. i PDV prag.",
   alternates: {

@@ -36,7 +36,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   const ogImage = `${baseUrl}/og-knowledge-hub.png`
 
   return {
-    title: `${comparison.frontmatter.title} | FiskAI`,
+    title: comparison.frontmatter.title,
     description: comparison.frontmatter.description,
     authors: [{ name: "FiskAI" }],
     alternates: {

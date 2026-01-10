@@ -6,7 +6,7 @@ import { hr } from "date-fns/locale"
 import Link from "next/link"
 import { Calendar, Tag } from "lucide-react"
 
-const BASE_URL = process.env.NEXT_PUBLIC_APP_URL || "https://fiskai.hr"
+const BASE_URL = process.env.NEXT_PUBLIC_APP_URL || "https://www.fiskai.hr"
 
 export async function generateStaticParams() {
   const slugs = await getAllPostSlugs()
@@ -20,7 +20,7 @@ interface PageProps {
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const { slug } = await params
   const post = await getPostBySlug(slug)
-  if (!post) return { title: "Vijest nije pronađena | FiskAI" }
+  if (!post) return { title: "Vijest nije pronađena" }
   return {
     title: post.title,
     description: post.excerpt || undefined,

@@ -8,17 +8,17 @@ import { JsonLd } from "@/components/shared/seo/JsonLd"
 import { generateBreadcrumbSchema, generateFAQSchema } from "@/lib/schema"
 import { SectionBackground } from "@/components/shared/ui/patterns/SectionBackground"
 
-const BASE_URL = process.env.NEXT_PUBLIC_APP_URL || "https://fiskai.hr"
+const BASE_URL = process.env.NEXT_PUBLIC_APP_URL || "https://www.fiskai.hr"
 
 export const metadata: Metadata = {
-  title: "Fiskalizacija 2.0 | Sve što trebate znati | FiskAI",
+  title: "Fiskalizacija 2.0 | Sve što trebate znati",
   description:
     "Kompletan vodič za Fiskalizaciju 2.0 u Hrvatskoj. Rokovi, obveze, priprema. Provjerite jeste li spremni.",
   alternates: {
     canonical: `${BASE_URL}/fiskalizacija`,
   },
   openGraph: {
-    title: "Fiskalizacija 2.0 | FiskAI",
+    title: "Fiskalizacija 2.0",
     description: "Provjerite jeste li spremni za Fiskalizaciju 2.0",
   },
 }

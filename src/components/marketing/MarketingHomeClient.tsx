@@ -53,7 +53,7 @@ export function MarketingHomeClient({ latestNews }: MarketingHomeClientProps) {
     <div>
       {/* COCKPIT HERO SECTION */}
       {/* @design-override: Hero uses hardcoded dark gradient for consistent cockpit aesthetic */}
-      <section className="relative min-h-[90vh] overflow-hidden bg-gradient-to-br from-slate-950 via-blue-950 to-slate-900">
+      <section className="relative min-h-[70vh] overflow-hidden bg-gradient-to-br from-slate-950 via-blue-950 to-slate-900">
         {/* Animated background effects */}
         <PlexusBackground className="opacity-40" />
 
@@ -108,7 +108,7 @@ export function MarketingHomeClient({ latestNews }: MarketingHomeClientProps) {
           }}
         />
 
-        <div className="relative mx-auto max-w-7xl px-4 py-16 md:px-6 md:py-24">
+        <div className="relative mx-auto max-w-7xl px-4 py-12 md:px-6 md:py-16">
           <div className="grid gap-12 lg:grid-cols-[1.3fr_1fr] lg:items-start">
             {/* LEFT: Hero Content */}
             <Stagger className="space-y-8">
@@ -239,7 +239,7 @@ export function MarketingHomeClient({ latestNews }: MarketingHomeClientProps) {
 
           {/* Quick Access Toolbar */}
           <motion.div
-            className="mt-16"
+            className="mt-10"
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.7 }}
@@ -249,7 +249,7 @@ export function MarketingHomeClient({ latestNews }: MarketingHomeClientProps) {
         </div>
 
         {/* Bottom fade */}
-        <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-base to-transparent" />
+        <div className="absolute bottom-0 left-0 right-0 h-20 bg-gradient-to-t from-base to-transparent" />
       </section>
 
       {/* MINI ASSISTANT - Bridge between hero and features */}

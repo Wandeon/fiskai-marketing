@@ -71,3 +71,10 @@ export async function getRelatedPosts(
     .filter((p) => p.slug !== excludeSlug)
     .slice(0, limit)
 }
+
+export async function getAllPosts(): Promise<NewsPost[]> {
+  const posts = await wp.getAllPosts()
+  if (posts !== null) return posts
+  console.log("Using JSON fallback for all posts")
+  return fallback.getFallbackPosts()
+}
