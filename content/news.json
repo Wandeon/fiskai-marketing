@@ -2,20 +2,71 @@
   "posts": [
     {
       "id": "1",
-      "slug": "primjer-porezne-vijesti",
-      "title": "Primjer porezne vijesti",
-      "content": "<p>Ovo je primjer sadrzaja za staticku verziju stranice kada WordPress nije dostupan.</p>",
-      "excerpt": "Primjer sadrzaja za staticku verziju.",
-      "publishedAt": "2026-01-09T12:00:00Z",
-      "modifiedAt": "2026-01-09T12:00:00Z",
+      "slug": "fiskalizacija-2-0-rokovi-i-obveze",
+      "title": "Fiskalizacija 2.0: Novi rokovi i obveze za 2026.",
+      "content": "<p>Porezna uprava objavila je detaljan plan implementacije Fiskalizacije 2.0 koja donosi značajne promjene za sve poduzetnike u Hrvatskoj.</p><h2>Ključni datumi</h2><p>PDV obveznici moraju biti spremni do <strong>1. siječnja 2026.</strong>, dok ostali poduzetnici imaju rok do 1. siječnja 2027. Testna faza započinje 1. rujna 2025.</p><h2>Što se mijenja?</h2><ul><li>Obvezno e-fakturiranje za sve B2B transakcije</li><li>Proširenje fiskalizacije na sve načine plaćanja</li><li>Novi sustav informacijskih posrednika</li></ul><p>Preporučujemo svim poduzetnicima da započnu s pripremama što prije kako bi izbjegli kazne koje mogu iznositi do 200.000 EUR.</p>",
+      "excerpt": "Porezna uprava objavila je plan implementacije Fiskalizacije 2.0. PDV obveznici moraju biti spremni do 1.1.2026.",
+      "publishedAt": "2026-01-08T10:00:00Z",
+      "modifiedAt": "2026-01-08T10:00:00Z",
       "categoryId": "1",
       "categoryName": "Porezne novosti",
       "categorySlug": "porezne-novosti",
-      "tags": [],
+      "tags": ["fiskalizacija", "e-fakturiranje", "PDV"],
+      "featuredImageUrl": null,
+      "impactLevel": "high",
+      "tldr": "Fiskalizacija 2.0 uvodi obvezno e-fakturiranje. PDV obveznici rok 1.1.2026., ostali 1.1.2027. Kazne do 200.000 EUR.",
+      "actionItems": ["Provjerite je li vaš softver spreman za e-fakturiranje", "Registrirajte se kod informacijskog posrednika", "Pripremite se za testnu fazu od rujna 2025."]
+    },
+    {
+      "id": "2",
+      "slug": "pdv-prag-60000-eur-sto-to-znaci",
+      "title": "PDV prag od 60.000 EUR: Što trebate znati",
+      "content": "<p>S novim poreznim pragom od 60.000 EUR za ulazak u sustav PDV-a, mnogi paušalni obrtnici trebaju pratiti svoj promet pažljivije nego ikad.</p><h2>Kako funkcionira prag?</h2><p>Ako vaš godišnji promet premaši 60.000 EUR, automatski postajete PDV obveznik od prvog dana sljedećeg mjeseca. To znači nove obveze:</p><ul><li>Izdavanje računa s PDV-om</li><li>Mjesečno ili kvartalno podnošenje PDV prijava</li><li>Vođenje detaljnije evidencije</li></ul><h2>Savjeti za praćenje</h2><p>Koristite alate poput FiskAI PDV kalkulatora za praćenje koliko ste blizu praga. Pravovremena priprema može uštedjeti vrijeme i novac.</p>",
+      "excerpt": "Novi PDV prag od 60.000 EUR zahtijeva pažljivo praćenje prometa. Saznajte što se mijenja kada prijeđete prag.",
+      "publishedAt": "2026-01-06T14:30:00Z",
+      "modifiedAt": "2026-01-06T14:30:00Z",
+      "categoryId": "2",
+      "categoryName": "PDV",
+      "categorySlug": "pdv",
+      "tags": ["PDV", "prag", "paušalni obrt"],
       "featuredImageUrl": null,
       "impactLevel": "medium",
-      "tldr": "Primjer TL;DR sazetka vijesti.",
-      "actionItems": null
+      "tldr": "PDV prag je 60.000 EUR godišnje. Prelaskom postajete obveznik s novim obvezama prijave i evidencije.",
+      "actionItems": ["Pratite svoj godišnji promet", "Koristite PDV kalkulator", "Pripremite se za PDV sustav ako ste blizu praga"]
+    },
+    {
+      "id": "3",
+      "slug": "doprinosi-2026-nova-osnovica",
+      "title": "Doprinosi za 2026.: Nova minimalna osnovica",
+      "content": "<p>Vlada je objavila nove iznose doprinosa za 2026. godinu. Minimalna osnovica za obračun doprinosa povećana je u skladu s rastom prosječne plaće.</p><h2>Novi iznosi</h2><p>Ukupni mjesečni doprinosi za paušalne obrtnike iznose:</p><ul><li><strong>MIO I (15%)</strong>: mirovinsko osiguranje na temelju generacijske solidarnosti</li><li><strong>MIO II (5%)</strong>: mirovinsko osiguranje na temelju individualne štednje</li><li><strong>HZZO (16,5%)</strong>: zdravstveno osiguranje</li></ul><h2>Rokovi plaćanja</h2><p>Doprinosi se plaćaju do 15. u mjesecu za prethodni mjesec. Preporučujemo postavljanje trajnih naloga za pravovremeno plaćanje.</p>",
+      "excerpt": "Nova minimalna osnovica za doprinose u 2026. Saznajte nove iznose za MIO i HZZO.",
+      "publishedAt": "2026-01-04T09:00:00Z",
+      "modifiedAt": "2026-01-04T09:00:00Z",
+      "categoryId": "3",
+      "categoryName": "Doprinosi",
+      "categorySlug": "doprinosi",
+      "tags": ["doprinosi", "MIO", "HZZO", "paušalni obrt"],
+      "featuredImageUrl": null,
+      "impactLevel": "medium",
+      "tldr": "Doprinosi za 2026. izračunavaju se na novoj minimalnoj osnovici. Rok plaćanja je 15. u mjesecu.",
+      "actionItems": ["Ažurirajte iznose u vašem sustavu", "Postavite trajne naloge za plaćanje", "Koristite kalkulator doprinosa"]
+    },
+    {
+      "id": "4",
+      "slug": "posd-obrazac-rokovi-2026",
+      "title": "PO-SD obrazac: Kvartalni rokovi za 2026.",
+      "content": "<p>Paušalni obrtnici su obvezni podnositi PO-SD obrazac kvartalno. Evo pregleda rokova za 2026. godinu.</p><h2>Rokovi za 2026.</h2><ul><li><strong>Q1 (siječanj-ožujak)</strong>: rok do 20. travnja 2026.</li><li><strong>Q2 (travanj-lipanj)</strong>: rok do 20. srpnja 2026.</li><li><strong>Q3 (srpanj-rujan)</strong>: rok do 20. listopada 2026.</li><li><strong>Q4 (listopad-prosinac)</strong>: rok do 20. siječnja 2027.</li></ul><h2>Kako podnijeti?</h2><p>PO-SD obrazac podnosi se elektronički putem e-Porezna sustava. FiskAI može automatski generirati obrazac na temelju vaših izdanih računa.</p>",
+      "excerpt": "Pregled kvartalnih rokova za PO-SD obrazac u 2026. Saznajte kako i kada podnijeti obrazac.",
+      "publishedAt": "2026-01-02T11:00:00Z",
+      "modifiedAt": "2026-01-02T11:00:00Z",
+      "categoryId": "1",
+      "categoryName": "Porezne novosti",
+      "categorySlug": "porezne-novosti",
+      "tags": ["PO-SD", "paušalni obrt", "rokovi"],
+      "featuredImageUrl": null,
+      "impactLevel": "low",
+      "tldr": "PO-SD obrazac podnosi se kvartalno, rok je 20. u mjesecu nakon kvartala. Podnosi se elektronički.",
+      "actionItems": ["Označite rokove u kalendaru", "Pripremite evidenciju prometa", "Koristite e-Porezna za podnošenje"]
     }
   ],
   "categories": [
@@ -23,8 +74,20 @@
       "id": "1",
       "slug": "porezne-novosti",
       "name": "Porezne novosti",
+      "count": 2
+    },
+    {
+      "id": "2",
+      "slug": "pdv",
+      "name": "PDV",
+      "count": 1
+    },
+    {
+      "id": "3",
+      "slug": "doprinosi",
+      "name": "Doprinosi",
       "count": 1
     }
   ],
-  "generatedAt": "2026-01-09T12:00:00Z"
+  "generatedAt": "2026-01-10T12:00:00Z"
 }

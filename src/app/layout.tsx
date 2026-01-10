@@ -5,7 +5,6 @@ import { Toaster } from "sonner"
 import Link from "next/link"
 import { MarketingHeader } from "@/components/marketing/MarketingHeader"
 import { MarketingAnalyticsInit } from "@/components/marketing/marketing-analytics-init"
-import { ComplianceProgressBar } from "@/components/marketing/ComplianceProgressBar"
 import { SpeculationRules } from "@/components/shared/seo/speculation-rules"
 import { JsonLd } from "@/components/shared/seo/JsonLd"
 import {
@@ -27,7 +26,7 @@ const jetbrainsMono = JetBrains_Mono({
   variable: "--font-jetbrains",
 })
 
-const BASE_URL = process.env.NEXT_PUBLIC_APP_URL || "https://fiskai.hr"
+const BASE_URL = process.env.NEXT_PUBLIC_APP_URL || "https://www.fiskai.hr"
 
 export const viewport: Viewport = {
   width: "device-width",
@@ -178,7 +177,6 @@ export default function RootLayout({
             <SpeculationRules />
 
             <main id="glavni-sadrzaj" className="pb-16">{children}</main>
-            <ComplianceProgressBar />
 
             <footer className="border-t border-inverse/10 bg-base">
               <div className="mx-auto grid max-w-7xl gap-8 px-4 py-10 md:grid-cols-2 lg:grid-cols-5 md:px-6">

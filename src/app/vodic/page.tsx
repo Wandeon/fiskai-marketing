@@ -6,10 +6,10 @@ import { GuidesExplorer } from "@/components/shared/knowledge-hub/guide/GuidesEx
 import { SectionBackground } from "@/components/shared/ui/patterns/SectionBackground"
 import { FadeIn } from "@/components/shared/ui/motion/FadeIn"
 
-const BASE_URL = process.env.NEXT_PUBLIC_APP_URL || "https://fiskai.hr"
+const BASE_URL = process.env.NEXT_PUBLIC_APP_URL || "https://www.fiskai.hr"
 
 export const metadata: Metadata = {
-  title: "Vodiči za poslovanje | FiskAI",
+  title: "Vodiči za poslovanje",
   description:
     "Kompletan vodič za sve oblike poslovanja u Hrvatskoj - paušalni obrt, obrt na dohodak, d.o.o. i više.",
   alternates: {

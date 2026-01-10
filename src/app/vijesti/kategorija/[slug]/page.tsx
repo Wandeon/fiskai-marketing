@@ -3,7 +3,7 @@ import { notFound } from "next/navigation"
 import { getAllCategorySlugs, getPostsByCategory, getAllCategories } from "@/lib/content/news"
 import Link from "next/link"
 
-const BASE_URL = process.env.NEXT_PUBLIC_APP_URL || "https://fiskai.hr"
+const BASE_URL = process.env.NEXT_PUBLIC_APP_URL || "https://www.fiskai.hr"
 
 export async function generateStaticParams() {
   const slugs = await getAllCategorySlugs()
@@ -19,7 +19,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   const categories = await getAllCategories()
   const category = categories.find((c) => c.slug === slug)
   return {
-    title: category ? `${category.name} | Vijesti | FiskAI` : "Kategorija | FiskAI",
+    title: category ? `${category.name} | Vijesti` : "Kategorija",
     alternates: { canonical: `${BASE_URL}/vijesti/kategorija/${slug}` },
   }
 }

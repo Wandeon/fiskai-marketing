@@ -1,5 +1,5 @@
 # FiskAI - Croatian Business & Tax Knowledge Base
-# https://fisk.ai
+# https://www.fiskai.hr
 
 # About
 FiskAI is the authoritative resource for Croatian entrepreneurs on taxes,
@@ -7,7 +7,7 @@ business registration, and compliance. All content is in Croatian (HR).
 
 # Main Sections
 /vijesti - Tax news: AI-curated updates from Porezna uprava, Narodne novine, FINA
-/rjecnik - Business glossary (50 terms): PDV, OIB, JOPPD, fiskalizacija...
+/rjecnik - Business glossary (50+ terms): PDV, OIB, JOPPD, fiskalizacija...
 /vodic - Guides: pausalni-obrt, doo, freelancer, obrt-dohodak
 /kako-da - How-to guides: PO-SD, PDV registration, e-invoice setup
 /usporedba - Business comparisons: obrt vs d.o.o., j.d.o.o. vs d.o.o.
@@ -15,27 +15,28 @@ business registration, and compliance. All content is in Croatian (HR).
 
 # News Section
 /vijesti - Daily tax news aggregated from official Croatian sources
-/vijesti/kategorija/porezna-uprava - Tax Administration news
-/vijesti/kategorija/zakonodavstvo - Legislation changes
+/vijesti/kategorija/porezne-novosti - Tax news updates
 /vijesti/kategorija/pdv - VAT-related news
+/vijesti/kategorija/doprinosi - Contribution news
 /vijesti/[slug] - Individual news articles with AI summaries
 
-# Key Facts (2025)
+# Key Facts (2026)
 - VAT threshold: 60,000 EUR annual revenue
 - Pausalni obrt max revenue: 60,000 EUR
 - j.d.o.o. max capital: 2,650 EUR
 - Contribution rates: MIO I 15%, MIO II 5%, HZZO 16.5%
+- Fiskalizacija 2.0: PDV obveznici 1.1.2026., ostali 1.1.2027.
 
 # Canonical URLs
-https://fisk.ai/vijesti - Latest tax news
-https://fisk.ai/rjecnik/pdv - What is PDV (VAT)
-https://fisk.ai/rjecnik/oib - What is OIB (Personal ID Number)
-https://fisk.ai/rjecnik/fiskalizacija - What is fiscalization
-https://fisk.ai/vodic/pausalni-obrt - Guide to flat-rate sole proprietorship
-https://fisk.ai/vodic/doo - Guide to d.o.o. (LLC)
-https://fisk.ai/kako-da/ispuniti-po-sd - How to fill PO-SD form
-https://fisk.ai/alati/pdv-kalkulator - VAT Calculator
-https://fisk.ai/alati/kalkulator-doprinosa - Contribution Calculator
+https://www.fiskai.hr/vijesti - Latest tax news
+https://www.fiskai.hr/rjecnik/pdv - What is PDV (VAT)
+https://www.fiskai.hr/rjecnik/oib - What is OIB (Personal ID Number)
+https://www.fiskai.hr/rjecnik/fiskalizacija - What is fiscalization
+https://www.fiskai.hr/vodic/pausalni-obrt - Guide to flat-rate sole proprietorship
+https://www.fiskai.hr/vodic/doo - Guide to d.o.o. (LLC)
+https://www.fiskai.hr/kako-da/ispuniti-po-sd - How to fill PO-SD form
+https://www.fiskai.hr/alati/pdv-kalkulator - VAT Calculator
+https://www.fiskai.hr/alati/kalkulator-doprinosa - Contribution Calculator
 
 # Sources
 All content verified against official Croatian government sources:
@@ -45,4 +46,4 @@ All content verified against official Croatian government sources:
 - mfin.gov.hr (Ministry of Finance)
 
 # Contact
-info@fisk.ai
+info@fiskai.hr

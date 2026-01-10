@@ -18,11 +18,11 @@ import { CommandPalette } from "@/components/shared/ui/command-palette"
 import { Logo } from "@/components/shared/ui/Logo"
 
 const NAV_LINKS = [
-  { href: "/znacajke", label: "Značajke" },
-  { href: "/cijene", label: "Cijene" },
-  { href: "/vodici", label: "Vodiči" },
-  { href: "/o-nama", label: "O nama" },
-  { href: "/kontakt", label: "Kontakt" },
+  { href: "/features", label: "Značajke" },
+  { href: "/pricing", label: "Cijene" },
+  { href: "/vodic", label: "Vodiči" },
+  { href: "/about", label: "O nama" },
+  { href: "/contact", label: "Kontakt" },
 ]
 
 export function MarketingHeader() {

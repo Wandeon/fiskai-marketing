@@ -2,10 +2,16 @@ import type { Metadata } from "next"
 import Link from "next/link"
 import { Mail, Phone, MapPin, Clock, MessageSquare } from "lucide-react"
 import { SectionBackground } from "@/components/shared/ui/patterns/SectionBackground"
+import { ContactForm } from "./ContactForm"
+
+const BASE_URL = process.env.NEXT_PUBLIC_APP_URL || "https://www.fiskai.hr"
 
 export const metadata: Metadata = {
-  title: "FiskAI — Kontakt",
+  title: "Kontakt",
   description: "Kontaktirajte FiskAI tim za demo, beta program ili podršku.",
+  alternates: {
+    canonical: `${BASE_URL}/contact`,
+  },
 }
 
 export default function ContactPage() {
@@ -27,7 +33,7 @@ export default function ContactPage() {
               <div className="space-y-4">
                 <div className="flex items-start gap-3">
                   <div className="mt-1">
-                    <MapPin className="h-5 w-5 text-white/60" />
+                    <MapPin className="h-5 w-5 text-white/60" aria-hidden="true" />
                   </div>
                   <div>
                     <p className="font-medium">Lokacija</p>
@@ -36,7 +42,7 @@ export default function ContactPage() {
                 </div>
                 <div className="flex items-start gap-3">
                   <div className="mt-1">
-                    <Mail className="h-5 w-5 text-white/60" />
+                    <Mail className="h-5 w-5 text-white/60" aria-hidden="true" />
                   </div>
                   <div>
                     <p className="font-medium">Email</p>
@@ -51,7 +57,7 @@ export default function ContactPage() {
                 </div>
                 <div className="flex items-start gap-3">
                   <div className="mt-1">
-                    <MessageSquare className="h-5 w-5 text-white/60" />
+                    <MessageSquare className="h-5 w-5 text-white/60" aria-hidden="true" />
                   </div>
                   <div>
                     <p className="font-medium">Podrška</p>
@@ -68,7 +74,7 @@ export default function ContactPage() {
                 </div>
                 <div className="flex items-start gap-3">
                   <div className="mt-1">
-                    <Clock className="h-5 w-5 text-white/60" />
+                    <Clock className="h-5 w-5 text-white/60" aria-hidden="true" />
                   </div>
                   <div>
                     <p className="font-medium">Vrijeme odgovora</p>
@@ -95,64 +101,7 @@ export default function ContactPage() {
           </div>
 
           <div className="space-y-6">
-            <div className="rounded-lg border border-white/10 bg-white/5 backdrop-blur-sm p-6">
-              <h2 className="text-xl font-semibold mb-4">Zahtjev za demo</h2>
-              <p className="text-sm text-white/60 mb-4">
-                Zatražite personalizirani demo koji pokazuje kako FiskAI može ubrzati vaše
-                računovodstvo.
-              </p>
-              <div className="space-y-4">
-                <div>
-                  <label className="block text-sm font-medium mb-1">Ime i prezime *</label>
-                  <input
-                    type="text"
-                    className="w-full rounded-md border border-white/10 bg-white/5 px-3 py-2 text-sm text-white placeholder:text-white/40"
-                    placeholder="Vaše ime i prezime"
-                  />
-                </div>
-                <div>
-                  <label className="block text-sm font-medium mb-1">Email *</label>
-                  <input
-                    type="email"
-                    className="w-full rounded-md border border-white/10 bg-white/5 px-3 py-2 text-sm text-white placeholder:text-white/40"
-                    placeholder="vaš@email.hr"
-                  />
-                </div>
-                <div>
-                  <label className="block text-sm font-medium mb-1">Tip poslovanja *</label>
-                  <select className="w-full rounded-md border border-white/10 bg-white/5 px-3 py-2 text-sm text-white placeholder:text-white/40">
-                    <option value="">Odaberite...</option>
-                    <option value="pausalni-obrt">Paušalni obrt</option>
-                    <option value="vat-obrt">VAT obrt</option>
-                    <option value="doo">d.o.o.</option>
-                    <option value="accountant">Knjigovođa/računovoda</option>
-                  </select>
-                </div>
-                <div>
-                  <label className="block text-sm font-medium mb-1">Broj računa mjesečno *</label>
-                  <select className="w-full rounded-md border border-white/10 bg-white/5 px-3 py-2 text-sm text-white placeholder:text-white/40">
-                    <option value="">Odaberite...</option>
-                    <option value="1-10">1-10</option>
-                    <option value="11-50">11-50</option>
-                    <option value="51-200">51-200</option>
-                    <option value="200+">200+</option>
-                  </select>
-                </div>
-                <div>
-                  <label className="block text-sm font-medium mb-1">Poruka (opcionalno)</label>
-                  <textarea
-                    className="w-full rounded-md border border-white/10 bg-white/5 px-3 py-2 text-sm text-white placeholder:text-white/40 min-h-[100px]"
-                    placeholder="Specifična pitanja ili zahtjevi..."
-                  />
-                </div>
-                <button className="w-full rounded-md bg-gradient-to-r from-accent to-interactive px-4 py-3 text-sm font-semibold text-white hover:opacity-90">
-                  Pošalji zahtjev za demo
-                </button>
-                <p className="text-xs text-white/60">
-                  Kontaktirat ćemo vas unutar 24h radnim danima da dogovorimo vrijeme demo sastanka.
-                </p>
-              </div>
-            </div>
+            <ContactForm />
 
             <div className="rounded-lg border border-white/10 bg-white/5 backdrop-blur-sm p-6">
               <h2 className="text-xl font-semibold mb-2">Već imate račun?</h2>
@@ -179,7 +128,7 @@ export default function ContactPage() {
 
         <div className="mt-12 rounded-lg border border-accent/30 bg-gradient-to-r from-accent/10 to-interactive/10 p-6">
           <h3 className="text-lg font-semibold mb-2 flex items-center gap-2">
-            <Phone className="h-5 w-5 text-danger-text" />
+            <Phone className="h-5 w-5 text-danger-text" aria-hidden="true" />
             Hitna podrška
           </h3>
           <p className="text-sm text-white/60 mb-3">
@@ -191,7 +140,7 @@ export default function ContactPage() {
               href="tel:+38512345679"
               className="inline-flex items-center gap-2 rounded-md bg-white px-4 py-2 text-sm font-semibold text-danger-text hover:bg-white/95 border border-danger-border"
             >
-              <Phone className="h-4 w-4" />
+              <Phone className="h-4 w-4" aria-hidden="true" />
               +385 1 234 5679
             </a>
             <span className="text-xs text-white/60">Radnim danima 9-17h, subota 10-14h</span>

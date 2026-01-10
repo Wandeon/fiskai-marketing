@@ -5,10 +5,10 @@ import Link from "next/link"
 import { SectionBackground } from "@/components/shared/ui/patterns/SectionBackground"
 import { FadeIn } from "@/components/shared/ui/motion/FadeIn"
 
-const BASE_URL = process.env.NEXT_PUBLIC_APP_URL || "https://fiskai.hr"
+const BASE_URL = process.env.NEXT_PUBLIC_APP_URL || "https://www.fiskai.hr"
 
 export const metadata: Metadata = {
-  title: "Pronađite svoj poslovni oblik | FiskAI",
+  title: "Pronađite svoj poslovni oblik",
   description:
     "Interaktivni čarobnjak koji vam pomaže odabrati pravi oblik poslovanja u Hrvatskoj.",
   alternates: {
