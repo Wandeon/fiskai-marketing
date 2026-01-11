@@ -7,6 +7,7 @@ import { cn } from "@/lib/utils"
  * Stagger Components
  *
  * Creates staggered entrance animations for lists and groups of elements.
+ * Uses transform-only animation (no opacity) to avoid "disabled UI" appearance.
  * Respects user's reduced-motion preferences for accessibility.
  *
  * @see Design System Accessibility Guide: src/design-system/ACCESSIBILITY.md
@@ -32,7 +33,7 @@ export function Stagger({
       variants={{
         hidden: {},
         show: {
-          transition: { staggerChildren: 0.08, delayChildren: 0.05 },
+          transition: { staggerChildren: 0.06, delayChildren: 0.03 },
         },
       }}
     >
@@ -50,6 +51,8 @@ export function StaggerItem({
 }) {
   const reduce = useReducedMotion()
 
+  // CLS-safe: Transform-only animation, no opacity fade
+  // Content is always fully visible, just slides into position
   return (
     <motion.div
       className={cn(className)}
@@ -57,8 +60,8 @@ export function StaggerItem({
         reduce
           ? undefined
           : {
-              hidden: { opacity: 0, y: 10 },
-              show: { opacity: 1, y: 0, transition: { duration: 0.55, ease: [0.16, 1, 0.3, 1] } },
+              hidden: { y: 8 },
+              show: { y: 0, transition: { duration: 0.35, ease: [0.16, 1, 0.3, 1] } },
             }
       }
     >

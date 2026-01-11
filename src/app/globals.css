@@ -615,6 +615,38 @@ body {
   }
 }
 
+/* ========================================
+   Section Rhythm System
+   Consistent vertical spacing for marketing pages
+   ======================================== */
+@layer utilities {
+  /* Standard section padding - use these for consistent rhythm */
+  .section-py {
+    @apply py-12 md:py-16;
+  }
+
+  .section-py-sm {
+    @apply py-8 md:py-12;
+  }
+
+  .section-py-lg {
+    @apply py-16 md:py-20;
+  }
+
+  /* Standard content max-width containers */
+  .content-width {
+    @apply mx-auto max-w-6xl px-4 md:px-6;
+  }
+
+  .content-width-sm {
+    @apply mx-auto max-w-4xl px-4 md:px-6;
+  }
+
+  .content-width-lg {
+    @apply mx-auto max-w-7xl px-4 md:px-6;
+  }
+}
+
 /* Touch Target Minimum Size */
 @layer components {
   .touch-target {

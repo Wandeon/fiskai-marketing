@@ -17,7 +17,7 @@ export const metadata: Metadata = {
 export default function ContactPage() {
   return (
     <SectionBackground variant="dark">
-      <div className="mx-auto max-w-5xl px-4 py-14 md:px-6">
+      <div className="content-width-sm section-py">
         <div className="mb-10">
           <h1 className="text-display text-4xl font-semibold">Kontakt i podrška</h1>
           <p className="mt-4 text-lg text-white/60 max-w-2xl">

@@ -26,7 +26,7 @@ export const metadata: Metadata = {
 export default function AccountantsPage() {
   return (
     <SectionBackground variant="hero" showGrid={true} showOrbs={true}>
-      <div className="mx-auto max-w-6xl px-4 py-14 md:px-6">
+      <div className="content-width section-py">
         {/* Hero section */}
         <div className="mb-12 text-center">
           <div className="inline-flex items-center gap-2 rounded-full bg-interactive/10 px-4 py-2 text-sm font-semibold text-primary mb-4">

@@ -274,7 +274,7 @@ export function MarketingHomeClient({ latestNews }: MarketingHomeClientProps) {
 
       {/* FEATURE CARDS */}
       <Reveal>
-        <section className="mx-auto max-w-6xl px-4 py-14 md:px-6">
+        <section className="content-width section-py">
           <Stagger className="grid gap-6 md:grid-cols-3">
             <StaggerItem>
               <Link href="/features" className="group block">
@@ -339,7 +339,7 @@ export function MarketingHomeClient({ latestNews }: MarketingHomeClientProps) {
       {/* Knowledge Hub - Wizard CTA Section */}
       <section className="relative overflow-hidden bg-gradient-to-br from-interactive to-blue-800">
         <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(900px_circle_at_20%_20%,rgba(96,165,250,0.35),transparent_55%),radial-gradient(700px_circle_at_80%_10%,rgba(99,102,241,0.35),transparent_52%)]" />
-        <div className="relative mx-auto max-w-6xl px-4 py-16 md:px-6">
+        <div className="relative content-width section-py">
           <div className="grid gap-10 md:grid-cols-2 md:items-center">
             <Reveal className="space-y-6 text-foreground">
               <div className="inline-flex items-center gap-2 rounded-full bg-surface/20 px-4 py-1.5 text-sm font-medium">
@@ -420,7 +420,7 @@ export function MarketingHomeClient({ latestNews }: MarketingHomeClientProps) {
 
       {/* Guides Preview Section */}
       <Reveal>
-        <section className="mx-auto max-w-6xl px-4 py-14 md:px-6">
+        <section className="content-width section-py">
           <div className="mb-10 text-center">
             <h2 className="text-display text-3xl font-semibold">Vodiči za poslovanje</h2>
             <p className="mx-auto mt-4 max-w-2xl text-sm text-muted">
@@ -483,7 +483,7 @@ export function MarketingHomeClient({ latestNews }: MarketingHomeClientProps) {
 
       {/* Free Tools Section */}
       <section className="bg-surface">
-        <div className="mx-auto max-w-6xl px-4 py-14 md:px-6">
+        <div className="content-width section-py">
           <Reveal className="mb-10 text-center">
             <h2 className="text-display text-3xl font-semibold">Besplatni alati</h2>
             <p className="mx-auto mt-4 max-w-2xl text-sm text-muted">
@@ -556,7 +556,7 @@ export function MarketingHomeClient({ latestNews }: MarketingHomeClientProps) {
 
       {/* Early Access Program Section */}
       <section className="bg-gradient-to-b from-base to-blue-50">
-        <div className="mx-auto max-w-6xl px-4 py-14 md:px-6">
+        <div className="content-width section-py">
           <Reveal className="mb-10 text-center">
             <div className="mb-4 inline-flex items-center gap-2 rounded-full bg-info-bg px-4 py-1.5 text-sm font-medium text-link">
               <Sparkles className="h-4 w-4" />
@@ -645,7 +645,7 @@ export function MarketingHomeClient({ latestNews }: MarketingHomeClientProps) {
 
       {/* Paušalni obrt section */}
       <section className="bg-surface">
-        <div className="mx-auto max-w-6xl px-4 py-14 md:px-6">
+        <div className="content-width section-py">
           <div className="grid gap-10 md:grid-cols-2 md:items-center">
             <Reveal className="space-y-4">
               <h2 className="text-display text-3xl font-semibold">
