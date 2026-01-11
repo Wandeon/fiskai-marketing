@@ -12,6 +12,7 @@ import {
   Globe,
 } from "lucide-react"
 import { SectionBackground } from "@/components/shared/ui/patterns/SectionBackground"
+import { TrustBadge } from "@/components/trust"
 
 const BASE_URL = process.env.NEXT_PUBLIC_APP_URL || "https://fiskai.hr"
 
@@ -58,6 +59,9 @@ export default function SecurityPage() {
             FiskAI obrađuje osjetljive poslovne i računovodstvene podatke. Ovdje možete pronaći sve
             informacije o sigurnosti, privatnosti, podacima i našim operativnim standardima.
           </p>
+          <div className="mt-4">
+            <TrustBadge variant="inline" preset="transparent" />
+          </div>
         </div>
 
         <div className="grid gap-8 md:grid-cols-2">
