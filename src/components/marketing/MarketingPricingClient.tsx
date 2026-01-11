@@ -2,7 +2,7 @@
 
 import Link from "next/link"
 import { useMemo, useState } from "react"
-import { CheckCircle2, Shield, Users, FileText, Zap, Globe } from "lucide-react"
+import { CheckCircle2, Shield, Users, FileText, Zap, Globe, Clock } from "lucide-react"
 import { motion, useReducedMotion } from "framer-motion"
 import { useAnimatedNumber } from "@/hooks/use-animated-number"
 import { cn } from "@/lib/utils"
@@ -11,6 +11,7 @@ import { Stagger, StaggerItem } from "@/components/shared/motion/Stagger"
 import { FaqAccordion } from "@/components/marketing/FaqAccordion"
 import { SectionBackground } from "@/components/shared/ui/patterns/SectionBackground"
 import { companyInfo } from "@/config/company"
+import { TrustBadge } from "@/components/trust"
 
 type Billing = "monthly" | "annual"
 
@@ -83,7 +84,7 @@ export function MarketingPricingClient() {
         bullets: [
           "Do 200 računa mjesečno",
           "PDV obrada i JOPPD priprema",
-          "E-računi (send/receive)",
+          "E-računi (u pripremi)",
           "Do 3 korisnika",
           "Glavna knjiga i financijski izvještaji",
           "Telefonska podrška unutar 4h",
@@ -208,6 +209,9 @@ export function MarketingPricingClient() {
                 "rounded-2xl border bg-surface/5 backdrop-blur-sm border-white/10 p-8 transition-shadow will-change-transform"
               const hover = "hover:shadow-lg"
 
+              // Check if any bullet mentions "u pripremi" for trust badge
+              const hasInProgressFeature = plan.bullets.some((b) => b.includes("u pripremi"))
+
               return (
                 <motion.div
                   key={plan.id}
@@ -256,12 +260,19 @@ export function MarketingPricingClient() {
                   </div>
 
                   <ul className="mb-8 space-y-3">
-                    {plan.bullets.map((bullet) => (
-                      <li key={bullet} className="flex items-start gap-2 text-sm">
-                        <CheckCircle2 className="mt-0.5 h-4 w-4 flex-shrink-0 text-success-icon" />
-                        <span>{bullet}</span>
-                      </li>
-                    ))}
+                    {plan.bullets.map((bullet) => {
+                      const isInProgress = bullet.includes("u pripremi")
+                      return (
+                        <li key={bullet} className="flex items-start gap-2 text-sm">
+                          {isInProgress ? (
+                            <Clock className="mt-0.5 h-4 w-4 flex-shrink-0 text-warning" />
+                          ) : (
+                            <CheckCircle2 className="mt-0.5 h-4 w-4 flex-shrink-0 text-success-icon" />
+                          )}
+                          <span className={isInProgress ? "text-white/70" : ""}>{bullet}</span>
+                        </li>
+                      )
+                    })}
                   </ul>
 
                   <Link
@@ -277,6 +288,9 @@ export function MarketingPricingClient() {
                 </motion.div>
               )
             })}
+          </div>
+          <div className="mt-6 flex justify-center">
+            <TrustBadge variant="inline" preset="no-oversell" />
           </div>
         </Reveal>
 

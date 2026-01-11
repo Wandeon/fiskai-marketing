@@ -1,13 +1,14 @@
 "use client"
 
 import Link from "next/link"
-import { FileText, ScanText, Sparkles, Shield, Users, Landmark, ArrowRight } from "lucide-react"
+import { FileText, ScanText, Sparkles, Shield, Users, Landmark, ArrowRight, ExternalLink } from "lucide-react"
 import { FeatureStoryScroller } from "@/components/marketing/FeatureStoryScroller"
 import { Reveal } from "@/components/shared/motion/Reveal"
 import { Stagger, StaggerItem } from "@/components/shared/motion/Stagger"
 import { SectionBackground } from "@/components/shared/ui/patterns/SectionBackground"
 import { GlassCard } from "@/components/shared/ui/patterns/GlassCard"
 import { HoverScale } from "@/components/shared/ui/motion/HoverScale"
+import { TrustBadge } from "@/components/trust"
 
 export function MarketingFeaturesClient() {
   return (
@@ -141,6 +142,15 @@ export function MarketingFeaturesClient() {
                 <div className="text-sm text-white/60">
                   Priprema za integraciju s informacijskim posrednicima (npr. IE-Računi) i praćenje
                   statusa e-računa.
+                </div>
+                <div className="mt-4">
+                  <Link
+                    href="/spremnost"
+                    className="inline-flex items-center gap-1.5 text-xs text-accent-light hover:underline"
+                  >
+                    Pogledaj stanje spremnosti
+                    <ExternalLink className="h-3 w-3" />
+                  </Link>
                 </div>
               </GlassCard>
             </HoverScale>

@@ -27,6 +27,7 @@ import {
   Calendar,
   Calculator,
   CheckCircle2,
+  Clock,
   FileText,
   HelpCircle,
   Receipt,
@@ -37,6 +38,7 @@ import {
   TrendingUp,
   Zap,
 } from "lucide-react"
+import { TrustBadge } from "@/components/trust"
 
 interface MarketingHomeClientProps {
   latestNews: Array<{
@@ -194,25 +196,40 @@ export function MarketingHomeClient({ latestNews }: MarketingHomeClientProps) {
               <StaggerItem>
                 <div className="flex flex-wrap gap-4 pt-4">
                   {[
-                    { icon: Shield, text: "GDPR usklađeno" },
-                    { icon: Sparkles, text: "AI za ubrzanje unosa" },
-                    { icon: FileText, text: "E-računi spremni" },
+                    { icon: Shield, text: "GDPR usklađeno", isReady: true },
+                    { icon: Sparkles, text: "AI za ubrzanje unosa", isReady: true },
+                    { icon: Clock, text: "E-računi u pripremi", isReady: false },
                   ].map((item) => {
                     const Icon = item.icon
                     return (
                       <motion.div
                         key={item.text}
-                        className="flex items-center gap-2 rounded-lg border border-border bg-surface/5 px-4 py-2 text-sm text-secondary"
+                        className={`flex items-center gap-2 rounded-lg border px-4 py-2 text-sm ${
+                          item.isReady
+                            ? "border-border bg-surface/5 text-secondary"
+                            : "border-warning/30 bg-warning/5 text-warning/80"
+                        }`}
                         whileHover={{
-                          borderColor: "rgba(255,255,255,0.25)",
-                          backgroundColor: "rgba(255,255,255,0.1)",
+                          borderColor: item.isReady
+                            ? "rgba(255,255,255,0.25)"
+                            : "rgba(234,179,8,0.5)",
+                          backgroundColor: item.isReady
+                            ? "rgba(255,255,255,0.1)"
+                            : "rgba(234,179,8,0.1)",
                         }}
                       >
-                        <Icon className="h-4 w-4 text-accent-light" />
+                        <Icon className={`h-4 w-4 ${item.isReady ? "text-accent-light" : "text-warning"}`} />
                         {item.text}
                       </motion.div>
                     )
                   })}
+                </div>
+              </StaggerItem>
+
+              {/* Trust badge - subtle on hero */}
+              <StaggerItem>
+                <div className="pt-2">
+                  <TrustBadge variant="subtle" preset="readiness" />
                 </div>
               </StaggerItem>
             </Stagger>
