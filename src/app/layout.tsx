@@ -225,6 +225,7 @@ export default function RootLayout({
                 <div className="space-y-3">
                   <p className="text-sm font-semibold text-inverse">Transparentnost</p>
                   <div className="flex flex-col gap-2">
+                    <NavLink href="/spremnost">Stanje spremnosti</NavLink>
                     <NavLink href="/metodologija">Metodologija</NavLink>
                     <NavLink href="/urednicka-politika">Urednička politika</NavLink>
                     <NavLink href="/izvori">Službeni izvori</NavLink>
