@@ -645,6 +645,81 @@ body {
   .content-width-lg {
     @apply mx-auto max-w-7xl px-4 md:px-6;
   }
+
+  /* Prose-friendly width for readable line-length (65-75 chars) */
+  .prose-width {
+    @apply max-w-prose;
+  }
+}
+
+/* ========================================
+   Button System
+   ======================================== */
+@layer components {
+  /* Base button styles */
+  .btn {
+    @apply inline-flex items-center justify-center gap-2 rounded-md text-sm font-semibold transition-colors;
+  }
+
+  /* Primary button - solid background */
+  .btn-primary {
+    @apply btn bg-interactive px-6 py-3 text-white hover:opacity-90;
+  }
+
+  /* Secondary button - outline/ghost */
+  .btn-secondary {
+    @apply btn border border-white/20 bg-white/5 px-6 py-3 text-white hover:bg-white/10;
+  }
+
+  /* Gradient button - accent gradient */
+  .btn-gradient {
+    @apply btn bg-gradient-to-r from-accent to-interactive px-6 py-3 text-white hover:opacity-90;
+  }
+
+  /* Size variants */
+  .btn-sm {
+    @apply px-4 py-2 text-sm;
+  }
+
+  .btn-lg {
+    @apply px-8 py-4 text-base;
+  }
+
+  /* Full width on mobile */
+  .btn-mobile-full {
+    @apply w-full sm:w-auto;
+  }
+}
+
+/* ========================================
+   Section Spacing System
+   ======================================== */
+@layer utilities {
+  /* Standard section margins (between major sections) */
+  .section-gap {
+    @apply mb-16;
+  }
+
+  .section-gap-sm {
+    @apply mb-12;
+  }
+
+  .section-gap-lg {
+    @apply mb-20;
+  }
+
+  /* Heading gaps (after section headings) */
+  .heading-gap {
+    @apply mb-8;
+  }
+
+  .heading-gap-sm {
+    @apply mb-6;
+  }
+
+  .heading-gap-lg {
+    @apply mb-10;
+  }
 }
 
 /* Touch Target Minimum Size */

@@ -335,10 +335,7 @@ export function MarketingPricingClient() {
               </div>
 
               <div className="mt-8">
-                <Link
-                  href="/for/accountants"
-                  className="inline-flex items-center justify-center rounded-md bg-interactive px-8 py-3 text-sm font-semibold text-white transition-colors hover:bg-interactive-hover"
-                >
+                <Link href="/for/accountants" className="btn-primary">
                   Registrirajte se kao knjigovođa
                 </Link>
                 <p className="mt-3 text-xs text-white/60">
