@@ -50,15 +50,17 @@ export function StaggerItem({
 }) {
   const reduce = useReducedMotion()
 
+  // CLS-safe: Content starts visible (slightly faded) to prevent layout shift
   return (
     <motion.div
-      className={cn(className)}
+      className={cn("will-change-[opacity,transform]", className)}
+      style={{ transform: "translateZ(0)" }} // Force GPU layer
       variants={
         reduce
           ? undefined
           : {
-              hidden: { opacity: 0, y: 10 },
-              show: { opacity: 1, y: 0, transition: { duration: 0.55, ease: [0.16, 1, 0.3, 1] } },
+              hidden: { opacity: 0.3, y: 8 },
+              show: { opacity: 1, y: 0, transition: { duration: 0.45, ease: [0.16, 1, 0.3, 1] } },
             }
       }
     >

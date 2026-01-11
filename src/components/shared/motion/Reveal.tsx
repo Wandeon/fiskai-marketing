@@ -30,13 +30,16 @@ export function Reveal({
 }: RevealProps) {
   const reduce = useReducedMotion()
 
+  // CLS-safe: Use transform instead of layout-affecting properties
+  // Content is always visible, just slightly faded initially
   return (
     <motion.div
-      className={cn(className)}
-      initial={reduce ? false : { opacity: 0, y }}
+      className={cn("will-change-[opacity,transform]", className)}
+      initial={reduce ? false : { opacity: 0.3, y }}
       whileInView={reduce ? undefined : { opacity: 1, y: 0 }}
       viewport={{ once, margin: "0px 0px -15% 0px" }}
-      transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1], delay }}
+      transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1], delay }}
+      style={{ transform: "translateZ(0)" }} // Force GPU layer
       {...props}
     >
       {children}

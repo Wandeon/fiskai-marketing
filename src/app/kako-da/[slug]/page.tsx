@@ -58,7 +58,7 @@ export default async function HowToPage({ params }: Props) {
       <JsonLd schemas={[generateBreadcrumbSchema(breadcrumbs)]} />
 
       <SectionBackground variant="hero" showGrid showOrbs>
-        <div className="mx-auto max-w-4xl px-4 py-14 md:px-6">
+        <div className="content-width-sm section-py">
           <nav className="mb-6 text-sm text-white/60">
             <Link href="/baza-znanja" className="hover:text-white/90">
               Baza znanja

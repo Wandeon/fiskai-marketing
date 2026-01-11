@@ -167,7 +167,7 @@ export default async function GuidePage({ params }: Props) {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
       <SectionBackground variant="dark" showOrbs={true} showGrid={true}>
-        <div className="mx-auto max-w-6xl px-4 py-14 md:px-6">
+        <div className="content-width section-py">
           <nav className="mb-6 text-sm text-white/60">
             <Link href="/baza-znanja" className="hover:text-white/90">
               Baza znanja

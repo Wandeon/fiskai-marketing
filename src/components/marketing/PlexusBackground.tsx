@@ -34,7 +34,9 @@ export function PlexusBackground({
     const context = canvas.getContext("2d")
     if (!context) return
 
-    if (reduceMotion) {
+    // Skip animation on reduced motion OR on mobile (< 768px) for performance
+    const isMobile = typeof window !== "undefined" && window.innerWidth < 768
+    if (reduceMotion || isMobile) {
       return
     }
 

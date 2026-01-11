@@ -123,7 +123,7 @@ export function MarketingPricingClient() {
 
   return (
     <SectionBackground>
-      <div className="mx-auto max-w-6xl px-4 py-14 md:px-6">
+      <div className="content-width section-py">
         <Reveal>
           <Stagger className="mb-10 text-center">
             <StaggerItem>

@@ -23,7 +23,7 @@ export default async function KnowledgeBasePage() {
 
   return (
     <SectionBackground variant="mesh">
-      <div className="mx-auto max-w-6xl px-4 py-14 md:px-6">
+      <div className="content-width section-py">
         <header className="text-center">
           <div className="mx-auto inline-flex items-center gap-2 rounded-full bg-interactive/10 px-4 py-2 text-sm font-semibold text-primary">
             <Sparkles className="h-4 w-4" />
