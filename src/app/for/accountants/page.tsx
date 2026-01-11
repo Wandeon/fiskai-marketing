@@ -44,13 +44,13 @@ export default function AccountantsPage() {
           <div className="mt-8 flex flex-col justify-center gap-3 sm:flex-row">
             <Link
               href="/register"
-              className="inline-flex items-center justify-center rounded-md bg-interactive px-6 py-3 text-sm font-semibold text-white hover:opacity-90"
+              className="btn-primary"
             >
               Registrirajte se za besplatni pristup
             </Link>
             <Link
               href="/contact"
-              className="inline-flex items-center justify-center rounded-md border border-white/20 bg-surface/5 px-6 py-3 text-sm font-semibold text-white hover:bg-surface/10"
+              className="btn-secondary"
             >
               Dogovori demo za ured
             </Link>
@@ -325,7 +325,7 @@ export default function AccountantsPage() {
             </ul>
             <Link
               href="/register"
-              className="block w-full rounded-md bg-interactive px-6 py-3 text-center text-sm font-semibold text-white hover:opacity-90"
+              className="btn-primary w-full"
             >
               Registrirajte se kao knjigovođa
             </Link>
@@ -448,13 +448,13 @@ export default function AccountantsPage() {
           <div className="flex flex-col sm:flex-row gap-3 justify-center">
             <Link
               href="/register"
-              className="inline-flex items-center justify-center rounded-md bg-interactive px-8 py-3 text-sm font-semibold text-white hover:opacity-90"
+              className="btn-primary"
             >
               Besplatna registracija za knjigovođe
             </Link>
             <Link
               href="/contact"
-              className="inline-flex items-center justify-center rounded-md border border-white/20 bg-surface/5 px-8 py-3 text-sm font-semibold text-white hover:bg-surface/10"
+              className="btn-secondary"
             >
               Demo za računovodstvene uredove
             </Link>
