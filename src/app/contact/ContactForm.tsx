@@ -10,6 +10,7 @@ import {
   buildMailtoFallback,
   type LeadPayload,
   type PersonaType,
+  type LeadSubmissionResult,
 } from "@/lib/leads"
 
 interface FormData {
@@ -55,6 +56,7 @@ export function ContactForm() {
   const [status, setStatus] = useState<FormStatus>("idle")
   const [errors, setErrors] = useState<Record<string, string>>({})
   const [submittedPayload, setSubmittedPayload] = useState<LeadPayload | null>(null)
+  const [submissionMethod, setSubmissionMethod] = useState<"api" | "local" | null>(null)
   const [copySuccess, setCopySuccess] = useState(false)
 
   const validateForm = (): boolean => {
@@ -114,6 +116,7 @@ export function ContactForm() {
 
       if (result.success) {
         setSubmittedPayload(result.payload)
+        setSubmissionMethod(result.method)
         setStatus("success")
       } else {
         setStatus("error")
@@ -161,20 +164,49 @@ export function ContactForm() {
       honeypot: "",
     })
     setSubmittedPayload(null)
+    setSubmissionMethod(null)
     setErrors({})
   }
 
-  // Success state
+  // Success state - different messaging based on submission method
   if (status === "success" && submittedPayload) {
+    const isApiSuccess = submissionMethod === "api"
+
     return (
-      <div className="rounded-lg border border-success-border bg-success-bg0/20 backdrop-blur-sm p-6">
+      <div className={`rounded-lg border backdrop-blur-sm p-6 ${
+        isApiSuccess
+          ? "border-success-border bg-success-bg0/20"
+          : "border-warning/30 bg-warning-bg0/10"
+      }`}>
         <div className="flex flex-col items-center text-center">
-          <CheckCircle2 className="h-12 w-12 text-success mb-4" />
-          <h2 className="text-xl font-semibold mb-2">Zahtjev je spremljen!</h2>
-          <p className="text-sm text-white/60 mb-4">
-            Kontaktirat ćemo vas na <strong>{submittedPayload.email}</strong> unutar 24h
-            radnim danima.
-          </p>
+          {isApiSuccess ? (
+            <>
+              <CheckCircle2 className="h-12 w-12 text-success mb-4" />
+              <h2 className="text-xl font-semibold mb-2">Zahtjev je poslan!</h2>
+              <p className="text-sm text-white/60 mb-4">
+                Kontaktirat ćemo vas na <strong>{submittedPayload.email}</strong> unutar 24h
+                radnim danima.
+              </p>
+            </>
+          ) : (
+            <>
+              <Mail className="h-12 w-12 text-warning mb-4" />
+              <h2 className="text-xl font-semibold mb-2">Još jedan korak</h2>
+              <p className="text-sm text-white/60 mb-4">
+                Vaši podaci su pripremljeni. Molimo pošaljite email kako bismo primili vaš zahtjev.
+              </p>
+              <a
+                href={buildMailtoFallback(submittedPayload)}
+                className="inline-flex items-center justify-center gap-2 rounded-md bg-gradient-to-r from-accent to-interactive px-6 py-3 text-sm font-semibold text-white hover:opacity-90 mb-4"
+              >
+                <Mail className="h-4 w-4" />
+                Pošalji email
+              </a>
+              <p className="text-xs text-white/40 mb-2">
+                Kliknite gumb iznad da otvorite email s vašim podacima.
+              </p>
+            </>
+          )}
 
           <div className="flex flex-col sm:flex-row gap-3 w-full max-w-xs">
             <button
@@ -186,19 +218,20 @@ export function ContactForm() {
             </button>
           </div>
 
-          {/* Mailto fallback - only as last resort */}
-          <div className="mt-4 pt-4 border-t border-white/10 w-full">
-            <p className="text-xs text-white/40 mb-2">
-              Ako želite, možete nas kontaktirati i direktno:
-            </p>
-            <a
-              href={buildMailtoFallback(submittedPayload)}
-              className="inline-flex items-center gap-2 text-xs text-accent-light hover:underline"
-            >
-              <Mail className="h-3 w-3" />
-              Pošalji email ručno
-            </a>
-          </div>
+          {isApiSuccess && (
+            <div className="mt-4 pt-4 border-t border-white/10 w-full">
+              <p className="text-xs text-white/40 mb-2">
+                Ako želite, možete nas kontaktirati i direktno:
+              </p>
+              <a
+                href={buildMailtoFallback(submittedPayload)}
+                className="inline-flex items-center gap-2 text-xs text-accent-light hover:underline"
+              >
+                <Mail className="h-3 w-3" />
+                Pošalji email ručno
+              </a>
+            </div>
+          )}
 
           <button
             onClick={resetForm}
