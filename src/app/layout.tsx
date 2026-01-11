@@ -204,12 +204,12 @@ export default function RootLayout({
                 <div className="space-y-3">
                   <p className="text-sm font-semibold text-inverse">Linkovi</p>
                   <div className="flex flex-col gap-2">
+                    <NavLink href="/about">O nama</NavLink>
                     <NavLink href="/features">Mogućnosti</NavLink>
                     <NavLink href="/pricing">Cijene</NavLink>
                     <NavLink href="/security">Sigurnost</NavLink>
                     <NavLink href="/contact">Kontakt</NavLink>
                     <NavLink href="/status">Status sustava</NavLink>
-                    <NavLink href="/for/pausalni-obrt">Za paušalni obrt</NavLink>
                   </div>
                 </div>
                 <div className="space-y-3">
@@ -225,6 +225,7 @@ export default function RootLayout({
                 <div className="space-y-3">
                   <p className="text-sm font-semibold text-inverse">Transparentnost</p>
                   <div className="flex flex-col gap-2">
+                    <NavLink href="/transparentnost">Sve na jednom mjestu</NavLink>
                     <NavLink href="/spremnost">Stanje spremnosti</NavLink>
                     <NavLink href="/metodologija">Metodologija</NavLink>
                     <NavLink href="/urednicka-politika">Urednička politika</NavLink>
