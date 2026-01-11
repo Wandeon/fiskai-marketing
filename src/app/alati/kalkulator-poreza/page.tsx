@@ -1,11 +1,11 @@
 import { TaxCalculator } from "@/components/shared/knowledge-hub/calculators/TaxCalculator"
 import Link from "next/link"
 import type { Metadata } from "next"
-import { Calculator, ArrowRight, FileText } from "lucide-react"
 import { FAQ } from "@/components/shared/content/FAQ"
 import { generateWebApplicationSchema } from "@/lib/schema/webApplication"
 import { SectionBackground } from "@/components/shared/ui/patterns/SectionBackground"
 import { TAX_RATES, formatCurrency, formatPercentage } from "@/lib/fiscal-data"
+import { GuidanceCaptureCard, TAX_CALCULATOR_OPTIONS } from "@/components/guidance"
 
 const BASE_URL = process.env.NEXT_PUBLIC_APP_URL || "https://www.fiskai.hr"
 const pausalYear = TAX_RATES.pausal.year
@@ -101,37 +101,15 @@ export default function TaxCalculatorPage() {
           </ul>
         </div>
 
-        {/* Upsell Section */}
-        <section className="mt-8 rounded-xl border border-info-border bg-gradient-to-br from-info-bg to-info-bg p-6 backdrop-blur-sm">
-          <div className="flex items-start gap-4">
-            <div className="flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-xl bg-interactive-hover">
-              <Calculator className="h-6 w-6 text-white" />
-            </div>
-            <div className="flex-1">
-              <h3 className="text-lg font-semibold text-white">Neka FiskAI računa umjesto vas</h3>
-              <p className="mt-1 text-sm text-white/70">
-                Automatski izračun poreza na temelju stvarnih prihoda. Generirane uplatnice spremne
-                za plaćanje.
-              </p>
-              <ul className="mt-3 space-y-1 text-sm text-white/80">
-                <li className="flex items-center gap-2">
-                  <FileText className="h-4 w-4 text-primary" /> Kvartalni izvještaji
-                </li>
-                <li className="flex items-center gap-2">
-                  <span className="text-primary">✓</span> Automatski izračun po poreznim razredima
-                </li>
-                <li className="flex items-center gap-2">
-                  <span className="text-primary">✓</span> Podsjetnici za uplate
-                </li>
-              </ul>
-              <Link
-                href="/register"
-                className="mt-4 inline-flex items-center gap-2 rounded-lg bg-interactive-hover px-5 py-2.5 text-sm font-medium text-white hover:bg-interactive-hover"
-              >
-                Automatiziraj porez <ArrowRight className="h-4 w-4" />
-              </Link>
-            </div>
-          </div>
+        {/* Guidance Capture */}
+        <section className="mt-8">
+          <GuidanceCaptureCard
+            toolSlug="kalkulator-poreza"
+            title="Pošalji si izračun"
+            subtitle="Primi rezultat na email ili aktiviraj podsjetnike za kvartalne prijave poreza."
+            options={TAX_CALCULATOR_OPTIONS}
+            toolSnapshot={{ year: pausalYear }}
+          />
         </section>
 
         <FAQ items={faq} />

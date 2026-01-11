@@ -1,11 +1,11 @@
 import { Metadata } from "next"
 import Link from "next/link"
 import { PDVThresholdCalculator } from "@/components/shared/knowledge-hub/calculators/PDVThresholdCalculator"
-import { TrendingUp, ArrowRight, Bell } from "lucide-react"
 import { FAQ } from "@/components/shared/content/FAQ"
 import { generateWebApplicationSchema } from "@/lib/schema/webApplication"
 import { SectionBackground } from "@/components/shared/ui/patterns/SectionBackground"
 import { THRESHOLDS, TAX_RATES, formatCurrency, formatPercentage } from "@/lib/fiscal-data"
+import { GuidanceCaptureCard, PDV_CALCULATOR_OPTIONS } from "@/components/guidance"
 
 const BASE_URL = process.env.NEXT_PUBLIC_APP_URL || "https://www.fiskai.hr"
 const pdvThresholdLabel = formatCurrency(THRESHOLDS.pdv.value, { decimals: 0 })
@@ -104,37 +104,14 @@ export default function PDVCalculatorPage() {
           </ul>
         </section>
 
-        {/* Upsell Section */}
-        <section className="mt-12 rounded-xl border border-info-border bg-gradient-to-r from-info-bg to-info-bg p-6">
-          <div className="flex items-start gap-4">
-            <div className="flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-xl bg-interactive">
-              <TrendingUp className="h-6 w-6 text-white" />
-            </div>
-            <div className="flex-1">
-              <h3 className="text-lg font-semibold text-white/90">Automatsko praćenje PDV praga</h3>
-              <p className="mt-1 text-sm text-white/60">
-                FiskAI prati vaš prihod u realnom vremenu i upozorava vas kada se približite PDV
-                pragu. Bez iznenađenja.
-              </p>
-              <ul className="mt-3 space-y-1 text-sm text-white/70">
-                <li className="flex items-center gap-2">
-                  <Bell className="h-4 w-4 text-primary" /> Upozorenje na 80% praga
-                </li>
-                <li className="flex items-center gap-2">
-                  <span className="text-success-text">✓</span> Projekcija do kraja godine
-                </li>
-                <li className="flex items-center gap-2">
-                  <span className="text-success-text">✓</span> Automatski izvještaj za knjigovođu
-                </li>
-              </ul>
-              <Link
-                href="/register"
-                className="mt-4 inline-flex items-center gap-2 rounded-lg bg-interactive px-5 py-2.5 text-sm font-medium text-white hover:bg-interactive-hover"
-              >
-                Prati prag automatski <ArrowRight className="h-4 w-4" />
-              </Link>
-            </div>
-          </div>
+        {/* Guidance Capture */}
+        <section className="mt-12">
+          <GuidanceCaptureCard
+            toolSlug="pdv-kalkulator"
+            title="Pošalji si rezultat"
+            subtitle="Ostavi email i primi izračun s objašnjenjem. Ili aktiviraj upozorenje kad se približiš pragu."
+            options={PDV_CALCULATOR_OPTIONS}
+          />
         </section>
 
         <FAQ items={faq} />

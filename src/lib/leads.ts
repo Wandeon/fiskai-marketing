@@ -13,7 +13,16 @@
 // Types
 // ============================================================================
 
-export type LeadSource = "contact" | "register" | "newsletter" | "tool"
+/**
+ * Source taxonomy:
+ * - "contact" - Contact form submissions
+ * - "register" - Pre-registration capture
+ * - "newsletter" - Newsletter signups
+ * - "tool:<slug>" - Tool page captures (e.g., "tool:pdv-kalkulator", "tool:kalendar")
+ * - "guide:<slug>" - Guide page captures (future)
+ * - "comparison:<slug>" - Comparison page captures (future)
+ */
+export type LeadSource = string
 
 export type PersonaType =
   | "pausalni"

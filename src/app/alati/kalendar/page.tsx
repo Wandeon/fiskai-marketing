@@ -1,11 +1,11 @@
 import { Metadata } from "next"
 import Link from "next/link"
 import { DeadlineCalendar } from "@/components/shared/knowledge-hub/tools/DeadlineCalendar"
-import { Bell, ArrowRight, Calendar } from "lucide-react"
 import { FAQ } from "@/components/shared/content/FAQ"
 import { generateWebApplicationSchema } from "@/lib/schema/webApplication"
 import { SectionBackground } from "@/components/shared/ui/patterns/SectionBackground"
 import { DEADLINES, ADDITIONAL_DEADLINES } from "@/lib/fiscal-data"
+import { GuidanceCaptureCard, CALENDAR_OPTIONS } from "@/components/guidance"
 
 const BASE_URL = process.env.NEXT_PUBLIC_APP_URL || "https://www.fiskai.hr"
 
@@ -81,37 +81,15 @@ export default function CalendarPage() {
           <DeadlineCalendar year={calendarYear} />
         </div>
 
-        {/* Upsell Section */}
-        <section className="mt-12 rounded-xl border border-info-border bg-gradient-to-r from-interactive to-interactive p-6 text-white">
-          <div className="flex items-start gap-4">
-            <div className="flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-xl bg-surface/20">
-              <Bell className="h-6 w-6" />
-            </div>
-            <div className="flex-1">
-              <h3 className="text-lg font-semibold">Nikad ne propusti rok</h3>
-              <p className="mt-1 text-sm text-info-text">
-                FiskAI šalje automatske podsjetnike 7 dana, 3 dana i 1 dan prije svakog roka. Plus
-                generirane uplatnice spremne za plaćanje.
-              </p>
-              <ul className="mt-3 space-y-1 text-sm text-info-text">
-                <li className="flex items-center gap-2">
-                  <Calendar className="h-4 w-4" /> Personalizirani kalendar za vaš obrt
-                </li>
-                <li className="flex items-center gap-2">
-                  <span>✓</span> Email i push notifikacije
-                </li>
-                <li className="flex items-center gap-2">
-                  <span>✓</span> Sinkronizacija s Google/Apple kalendarom
-                </li>
-              </ul>
-              <Link
-                href="/register"
-                className="mt-4 inline-flex items-center gap-2 rounded-lg bg-surface px-5 py-2.5 text-sm font-semibold text-primary hover:bg-info-bg"
-              >
-                Aktiviraj podsjetnike <ArrowRight className="h-4 w-4" />
-              </Link>
-            </div>
-          </div>
+        {/* Guidance Capture */}
+        <section className="mt-12">
+          <GuidanceCaptureCard
+            toolSlug="kalendar"
+            title="Ne propusti rok"
+            subtitle="Ostavi email i primi podsjetnik prije važnih rokova."
+            options={CALENDAR_OPTIONS}
+            toolSnapshot={{ year: calendarYear }}
+          />
         </section>
 
         <FAQ items={faq} />

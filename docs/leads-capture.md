@@ -27,13 +27,46 @@ The endpoint should:
 - Return 2xx status on success
 - Handle the payload format described below
 
+## Sources Taxonomy
+
+The `source` field identifies where the lead came from. This enables segmentation and targeted follow-up sequences.
+
+### Current Sources
+
+| Source | Description | Example |
+|--------|-------------|---------|
+| `contact` | Contact/demo request form | `/contact` |
+| `register` | Pre-registration capture | `/register` |
+| `newsletter` | Newsletter signup | Footer, sidebars |
+| `tool:<slug>` | Tool page guidance capture | `tool:pdv-kalkulator`, `tool:kalendar` |
+
+### Future Sources (Reserved)
+
+| Source | Description | Example |
+|--------|-------------|---------|
+| `guide:<slug>` | Guide page captures | `guide:pausalni-obrt` |
+| `comparison:<slug>` | Comparison page captures | `comparison:firma` |
+| `exit-intent` | Exit-intent popup | `exit-intent:pricing` |
+
+### Tool Sources
+
+Tool captures include additional context in the `message` field:
+
+```
+deadline_reminders=true; results_email=false; tool=kalendar; snapshot_year=2026
+```
+
+This allows filtering by what the user actually requested (reminders, results, threshold warnings, etc.).
+
+---
+
 ## Payload Format
 
 ```typescript
 interface LeadPayload {
   // Required
   email: string              // User's email (normalized to lowercase)
-  source: LeadSource         // "contact" | "register" | "newsletter" | "tool"
+  source: string             // Source identifier (see taxonomy above)
   consent: boolean           // User accepted privacy policy
 
   // Optional context
@@ -118,6 +151,27 @@ Users can skip the registration form. This:
 - Records a `fiskai_register_skip` event in localStorage
 - Includes UTM parameters and timestamp
 - Redirects immediately to app
+
+### Tool Page Guidance Capture
+
+Tool pages (`/alati/*`) use the `GuidanceCaptureCard` component to collect leads with a companion-first tone (not sales-first).
+
+**Pages with guidance capture:**
+- `/alati/kalendar` - "Ne propusti rok" - deadline reminders
+- `/alati/pdv-kalkulator` - "Pošalji si rezultat" - results + PDV threshold warnings
+- `/alati/kalkulator-doprinosa` - "Pošalji si izračun" - results + payment reminders
+- `/alati/kalkulator-poreza` - "Pošalji si izračun" - results + quarterly reminders
+
+**Captured data includes:**
+- Email and consent
+- Selected options (what the user wants: reminders, results, warnings)
+- Tool snapshot (year, current values if applicable)
+- UTM parameters and landing path
+
+**Example message field:**
+```
+deadline_reminders=true; results_email=true; pdv_threshold_warning=false; tool=pdv-kalkulator
+```
 
 ## Local Storage Keys
 

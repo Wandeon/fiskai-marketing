@@ -1,11 +1,11 @@
 import { ContributionCalculator } from "@/components/shared/knowledge-hub/calculators/ContributionCalculator"
 import Link from "next/link"
 import type { Metadata } from "next"
-import { ArrowRight, Rocket } from "lucide-react"
 import { FAQ } from "@/components/shared/content/FAQ"
 import { generateWebApplicationSchema } from "@/lib/schema/webApplication"
 import { SectionBackground } from "@/components/shared/ui/patterns/SectionBackground"
 import { CONTRIBUTIONS, formatCurrency, formatPercentage } from "@/lib/fiscal-data"
+import { GuidanceCaptureCard, CONTRIBUTION_CALCULATOR_OPTIONS } from "@/components/guidance"
 
 const BASE_URL = process.env.NEXT_PUBLIC_APP_URL || "https://www.fiskai.hr"
 const contributionsYear = CONTRIBUTIONS.year
@@ -95,36 +95,16 @@ export default function ContributionCalculatorPage() {
           </ul>
         </div>
 
-        {/* FiskAI Upsell */}
-        <div className="mt-8 rounded-2xl border border-info-border bg-gradient-to-r from-info-bg to-info-bg p-6">
-          <div className="flex items-start gap-4">
-            <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-interactive">
-              <Rocket className="h-6 w-6 text-white" />
-            </div>
-            <div className="flex-1">
-              <h3 className="font-bold text-white/90">Automatski izračun s FiskAI</h3>
-              <p className="mt-1 text-sm text-white/60">
-                Zaboravi na ručne kalkulacije. FiskAI automatski izračunava doprinose, generira
-                uplatnice i podsjeća te na rokove.
-              </p>
-              <div className="mt-4 flex flex-wrap gap-3">
-                <Link
-                  href="/register"
-                  className="inline-flex items-center gap-2 rounded-lg bg-interactive px-6 py-2.5 text-sm font-medium text-white hover:opacity-90"
-                >
-                  Započni besplatno
-                  <ArrowRight className="h-4 w-4" />
-                </Link>
-                <Link
-                  href="/features"
-                  className="inline-flex items-center gap-2 rounded-lg border border-white/20 bg-surface/5 px-6 py-2.5 text-sm font-medium text-white/90 hover:bg-surface/10 backdrop-blur-sm"
-                >
-                  Saznaj više
-                </Link>
-              </div>
-            </div>
-          </div>
-        </div>
+        {/* Guidance Capture */}
+        <section className="mt-8">
+          <GuidanceCaptureCard
+            toolSlug="kalkulator-doprinosa"
+            title="Pošalji si izračun"
+            subtitle="Primi rezultat na email ili aktiviraj podsjetnike za rokove plaćanja doprinosa."
+            options={CONTRIBUTION_CALCULATOR_OPTIONS}
+            toolSnapshot={{ year: contributionsYear }}
+          />
+        </section>
 
         <FAQ items={faq} />
       </div>
