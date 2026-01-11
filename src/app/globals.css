@@ -647,23 +647,6 @@ body {
   }
 }
 
-/* ========================================
-   Layout Stability - Prevent CLS
-   ======================================== */
-@layer utilities {
-  /* Reserve space for content that animates in */
-  .animate-reserve-space {
-    min-height: 1px;
-    contain: layout;
-  }
-
-  /* Prevent layout shift from opacity animations */
-  .animate-opacity-only {
-    will-change: opacity;
-    backface-visibility: hidden;
-  }
-}
-
 /* Touch Target Minimum Size */
 @layer components {
   .touch-target {
