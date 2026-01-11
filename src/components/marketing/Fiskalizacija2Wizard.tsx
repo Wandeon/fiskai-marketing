@@ -118,7 +118,7 @@ const results: Record<NonNullable<BusinessType>, FiskalizacijaResult> = {
       { task: "Postavi automatsko knjiženje", details: "FiskAI → izvoz za knjigovođu" },
     ],
     fiskaiHelps: [
-      "Prima i šalje e-račune automatski",
+      "Priprema za e-račune (integracija u izradi)",
       "Izvoz u formatima za sve knjigovođe",
       "AI kategorizacija troškova",
       "Usklađivanje s bankovnim izvodom",
@@ -145,9 +145,9 @@ const results: Record<NonNullable<BusinessType>, FiskalizacijaResult> = {
       { task: "Definiraj workflow", details: "Tko odobrava, tko šalje?" },
     ],
     fiskaiHelps: [
-      "Enterprise-grade e-računi",
+      "Priprema za enterprise e-račune",
       "Multi-user s pravima pristupa",
-      "API integracije s ERP sustavima",
+      "Izvoz za ERP sustave (integracija u izradi)",
       "Compliance izvještaji i audit trail",
     ],
     urgency: "high",

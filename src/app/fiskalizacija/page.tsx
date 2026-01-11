@@ -154,10 +154,16 @@ export default function FiskalizacijaHubPage() {
           {/* CTA */}
           <div className="mt-12 rounded-2xl border border-info-border bg-info-bg backdrop-blur-sm p-8 text-center">
             <FileCheck className="mx-auto mb-4 h-12 w-12 text-primary" />
-            <h2 className="text-2xl font-bold text-white/90">Spremni za Fiskalizaciju 2.0?</h2>
+            <h2 className="text-2xl font-bold text-white/90">FiskAI te priprema za Fiskalizaciju 2.0</h2>
             <p className="mx-auto mt-2 max-w-lg text-white/60">
-              FiskAI automatski generira e-račune u UBL formatu, fiskalizira ih i šalje putem PEPPOL
-              mreže.
+              Pratimo službene specifikacije i pripremamo integraciju. Koristite vodiče, provjere spremnosti
+              i edukaciju dok čekamo finalizaciju propisa.
+            </p>
+            <p className="mx-auto mt-2 text-sm text-white/40">
+              Puna integracija s PEPPOL mrežom:{" "}
+              <Link href="/spremnost" className="text-accent-light hover:underline">
+                u pripremi →
+              </Link>
             </p>
             <div className="mt-6 flex justify-center gap-4">
               <Link
@@ -168,10 +174,10 @@ export default function FiskalizacijaHubPage() {
                 <ArrowRight className="h-4 w-4" />
               </Link>
               <Link
-                href="/features"
+                href="/spremnost"
                 className="inline-flex items-center gap-2 rounded-lg border border-white/20 bg-surface/5 px-6 py-3 font-medium text-white/90 hover:bg-surface/10"
               >
-                Saznaj više
+                Stanje spremnosti
               </Link>
             </div>
           </div>
